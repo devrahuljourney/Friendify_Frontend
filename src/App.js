@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Home from './page/Home';
 import Login from './page/Login';
 import Signup from './page/Signup';
+import VerifyEmail from './page/VerifyEmail';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
          <Route path='/' element={ <Home/>  } />
          <Route path='/login' element={<Login/>} />
          <Route path='/signup' element = { <Signup/> } />
+         <Route path='/verify-email' element={<VerifyEmail/>} />
        </Routes>
     </div>
   );
