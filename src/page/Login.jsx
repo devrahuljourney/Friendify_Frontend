@@ -1,7 +1,9 @@
 import React from 'react'
-
+import Template from "../components/auth/Template"
 export default function Login() {
   return (
-    <div>Login</div>
+    <div>
+        <Template  formtype = "login" />
+    </div>
   )
 }

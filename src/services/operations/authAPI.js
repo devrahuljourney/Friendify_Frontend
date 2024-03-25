@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { setLoading, setToken, setLogin } from "../../slices/authSlice";
 import { setUser } from "../../slices/profileSlice";
 import { endPoints } from "../apis";
-import { apiConnector } from "../apiconnector"
+import { apiconnector } from "../apiconnector"
 
 
 const {SENDOTP_API,
@@ -17,7 +17,7 @@ export function sendOtp (email, navigate) {
         dispatch(setLoading(true))
 
         try {
-            const response = await apiConnector("POST" , SENDOTP_API, {
+            const response = await apiconnector("POST" , SENDOTP_API, {
                 email,
                 checkUserPresent:true
             } ) 
@@ -49,7 +49,7 @@ export function signUp ({firstname, lastname, email, password,confirmPassword, o
         dispatch(setLoading(true));
 
         try {
-            const response = await apiConnector("POST", SIGNUP_API, {
+            const response = await apiconnector("POST", SIGNUP_API, {
                 firstname,
                 lastname,
                 email,
@@ -83,7 +83,7 @@ export function login(email,password,navigate){
         dispatch(setLoading(true));
 
         try {
-            const response = await apiConnector("POST", LOGIN_API, {email,password});
+            const response = await apiconnector("POST", LOGIN_API, {email,password});
 
             console.log("LOGIN API RESPONSE ", response)
             if(!response.data.success){
@@ -98,7 +98,7 @@ export function login(email,password,navigate){
             localStorage.setItem("token", JSON.stringify(response.data.token))
             localStorage.setItem("user", JSON.stringify(response.data.user))
 
-            navigate("/home")
+            navigate("/")
         } catch (error) {
             console.log("LOGIN API ERROR............", error)
             toast.error("Login Failed")   

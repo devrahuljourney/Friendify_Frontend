@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.loginform {
+    border-radius: 19px;
+background: linear-gradient(145deg, #c5c2cc, #eae7f3);
+box-shadow:  35px 35px 70px #bab8c1,
+             -35px -35px 70px #fcf8ff;
+}

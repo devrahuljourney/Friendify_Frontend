@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Home from './page/Home';
@@ -10,12 +11,18 @@ function App() {
 
   const {loggedIn} = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  useEffect(() => {
+     if(!loggedIn)
+     {
+      navigate("/login")
+     }
+  }, []);
   return (
     <div className="App">
        <Routes>
-         <Route path='/' element={ !loggedIn  ? <Home/> : navigate("/login")  } />
+         <Route path='/' element={ <Home/>  } />
          <Route path='/login' element={<Login/>} />
-         <Route path=' /signup ' element = { <Signup/> } />
+         <Route path='/signup' element = { <Signup/> } />
        </Routes>
     </div>
   );

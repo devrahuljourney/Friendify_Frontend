@@ -1,7 +1,10 @@
 import React from 'react'
+import Template from '../components/auth/Template'
 
 export default function Signup() {
   return (
-    <div>Signup</div>
+    <div>
+        <Template formtype = 'signup' />
+    </div>
   )
 }
