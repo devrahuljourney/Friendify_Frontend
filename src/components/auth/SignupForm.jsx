@@ -40,7 +40,7 @@ export default function SignupForm() {
   return (
     <div className="flex flex-col justify-center items-center h-screen">
        <h2 className="text-3xl font-semibold mb-4">Sign Up</h2>
-      <form className="loginform rounded p-8 shadow-md w-[350px] h-[400px] flex flex-col justify-center " onSubmit={handleSubmit}>
+      <form className="loginform rounded p-8 shadow-md md:w-[350px] w-[300px] h-[400px] flex flex-col justify-center " onSubmit={handleSubmit}>
         
         <div className="mb-4">
           <input

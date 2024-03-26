@@ -8,8 +8,8 @@ export default function Template({ formtype }) {
   return (
     <div className='bg-[#dbd8e3] w-[100%] flex flex-col'>
       <Logo />
-      <div className='flex flex-row justify-between items-center'>
-        <div className='p-4 w-[50%] '>
+      <div className='flex md:flex-row flex-col-reverse justify-between items-center'>
+        <div className='p-4 md:w-[50%] '>
           <img src={img} alt='authImage' />
         </div>
         <div className=' w-[50%] flex justify-center items-center ' >

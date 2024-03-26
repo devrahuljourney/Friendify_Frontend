@@ -39,7 +39,7 @@ export default function LoginForm() {
   return (
     <div className="flex flex-col justify-center items-center h-screen ">
       <h2 className="text-3xl font-semibold mb-4">Login</h2>
-      <form onSubmit={handleSubmit} className="loginform  p-8 rounded shadow-md w-[400px] h-[300px] flex flex-col justify-center  ">
+      <form onSubmit={handleSubmit} className="loginform  p-8 rounded shadow-md md:w-[400px] w-[300px] h-[300px] flex flex-col justify-center  ">
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700">Email:</label>
           <input

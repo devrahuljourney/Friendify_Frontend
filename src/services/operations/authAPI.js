@@ -48,7 +48,9 @@ export function signUp ({firstname, lastname, email, password,confirmPassword, o
         const toastId = toast.loading("Loading...");
         dispatch(setLoading(true));
 
+        console.log(firstname , lastname, email, password, confirmPassword, otp)
         try {
+            
             const response = await apiconnector("POST", SIGNUP_API, {
                 firstname,
                 lastname,
@@ -97,6 +99,7 @@ export function login(email,password,navigate){
             dispatch(setUser({...response.data.user}));
             localStorage.setItem("token", JSON.stringify(response.data.token))
             localStorage.setItem("user", JSON.stringify(response.data.user))
+            localStorage.setItem("loggedIn", JSON.stringify("true"))
 
             navigate("/")
         } catch (error) {
@@ -118,6 +121,7 @@ export function logout(navigate) {
       
       localStorage.removeItem("token")
       localStorage.removeItem("user")
+      localStorage.removeItem("loggedIn")
       toast.success("Logged Out")
       navigate("/")
     }

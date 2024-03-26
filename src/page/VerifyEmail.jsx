@@ -37,13 +37,15 @@ function VerifyEmail() {
     dispatch(
       signUp(
         
-        firstname,
+        {
+          firstname,
         lastname,
         email,
         password,
         confirmPassword,
         otp,
         navigate
+        }
       )
     );
   };

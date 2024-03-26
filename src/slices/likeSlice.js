@@ -18,6 +18,9 @@ const likeSlice = createSlice({
         setLoading(state, action) {
             state.loading = action.payload;
         },
+        setLike(state,action){
+            state.likes = action.payload;
+        }
     },
 });
 
