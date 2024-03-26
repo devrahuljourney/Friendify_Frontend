@@ -43,3 +43,30 @@ export const createPost = async(data, token) => {
     toast.dismiss(toastId)
     return result
 }
+
+export const editPost = async (postId, postData, token) => {
+    let result = null;
+    const dispatch = useDispatch();
+    const toastId = toast.loading("Loading...");
+    try {
+        const response = await apiconnector("POST", EDIT_POST(postId), postData, {
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
+        });
+
+        console.log("EDIT POST API RESPONSE ", response);
+        if (!response?.data?.success) {
+            throw new Error("Could not edit post");
+        }
+
+        toast.success("Post Edited Successfully");
+        result = response?.data?.post;
+        dispatch(setPosts(result));
+    } catch (error) {
+        console.log("EDIT POST API ERROR:", error);
+        toast.error(error.message);
+    }
+
+    toast.dismiss(toastId);
+    return result;
+};
