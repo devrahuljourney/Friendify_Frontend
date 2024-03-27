@@ -123,7 +123,7 @@ export function logout(navigate) {
       localStorage.removeItem("user")
       localStorage.removeItem("loggedIn")
       toast.success("Logged Out")
-      navigate("/")
+      navigate("/login")
     }
   }
   
