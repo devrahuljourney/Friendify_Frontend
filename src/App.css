@@ -8,3 +8,8 @@ background: linear-gradient(145deg, #c5c2cc, #eae7f3);
 box-shadow:  35px 35px 70px #bab8c1,
              -35px -35px 70px #fcf8ff;
 }
+
+.dark {
+    background-color: #352f44;
+    color: #fff;
+}

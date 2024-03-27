@@ -14,10 +14,10 @@ export default function SidebarLink({ link, iconName }) {
     };
 
     return (
-        <NavLink to={link.path}>
-            <div>
-                <Icon className="text-lg" />
-                <span>{link.name}</span>
+        <NavLink  to={link.path}>
+            <div className="flex justify-center items-center gap-x-2" >
+                <Icon className="text-2xl  " />
+                <span  className='hidden md:inline-block' >{link.name}</span>
             </div>
         </NavLink>
     );
