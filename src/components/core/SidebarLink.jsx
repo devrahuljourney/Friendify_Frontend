@@ -17,7 +17,7 @@ export default function SidebarLink({ link, iconName }) {
         <NavLink  to={link.path}>
             <div className="flex justify-center items-center gap-x-2" >
                 <Icon className="text-2xl  " />
-                <span  className='hidden md:inline-block' >{link.name}</span>
+                <span  className='' >{link.name}</span>
             </div>
         </NavLink>
     );

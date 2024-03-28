@@ -31,7 +31,7 @@ export default function SIdebar() {
     }, []);
 
     return (
-        <div className={` ${dark ? "dark" : " bg-[#dbd8e3] " } md:p-8 p-2 h-screen flex flex-col justify-start item-start gap-5 font-bold  `} >
+        <div className={` ${dark ? "dark" : " bg-[#dbd8e3] " } md:p-8 p-2  flex flex-col md:justify-start  border-r-[2px] border-gray-400 md:item-start gap-5 font-bold md:w-[250px] w-[70%] h-screen  z-20 md:rounded-r-[0%] rounded-r-lg   md:mt-0 mt-10 md:py-7 py-10 md:px-3 px-5  `} >
             <div className="flex justify-center items-start flex-col gap-5   gap-x-2">
                 {sidebarLinks.map((link) => (
                     <SidebarLink key={link.id} link={link} iconName={link.icon} />
@@ -42,12 +42,12 @@ export default function SIdebar() {
                 {isDark ? (
                     <div className="flex items-center gap-x-2">
                         <MdDarkMode className="text-2xl  "/>
-                        <p className='hidden md:inline-block'>Dark</p> {/* Hide on small screens */}
+                        <p className=''>Dark</p> {/* Hide on small screens */}
                     </div>
                 ) : (
                     <div className="flex items-center gap-x-2">
                         <CiLight className="text-2xl  "/>
-                        <p className='hidden md:inline-block'>Light</p> {/* Hide on small screens */}
+                        <p className=''>Light</p> {/* Hide on small screens */}
                     </div>
                 )}
             </button>
@@ -66,7 +66,7 @@ export default function SIdebar() {
             >
                 <div className="flex items-center gap-x-2">
                     <VscSignOut className="text-2xl  " />
-                    <span className='hidden md:inline-block font-bold'>Logout</span> 
+                    <span className=' font-bold'>Logout</span> 
                 </div>
             </button>
 
