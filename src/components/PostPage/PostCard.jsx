@@ -6,6 +6,8 @@ import { FcLike } from "react-icons/fc";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import CommentCard from './CommentCard';
 
 export default function PostCard({ post }) {
     const createdAt = post.createdAt;
@@ -23,6 +25,7 @@ export default function PostCard({ post }) {
           .catch(error => console.error('Error copying link:', error));
   };
 
+  const [commentShow, setCommentShow] = useState(false);
     return (
         <div>
             <Link to={`/profile/${post?.userId?._id}`} >
@@ -48,10 +51,24 @@ export default function PostCard({ post }) {
                 )}
             </div>
             <div>
-                <button><FcLike /> {post?.likes.length}</button>
-                <button><FaRegCommentAlt /> {post?.comments?.length}</button>
+            <button onClick={() => console.log("Like button clicked")}>
+               {post?.likes?.some(like => like.userId === user?._id) ? <FcLike /> : <FaRegHeart />} {post?.likes?.length}
+            </button>
+
+
+                <button onClick={() => setCommentShow(!commentShow)} ><FaRegCommentAlt /> {post?.comments?.length}</button>
                 <button onClick={handleShare} ><IoMdShare /></button>
             </div>
+            <div>
+              {
+                commentShow && (
+                  post?.comments && post.comments.map(comment => (
+              <CommentCard key={comment.id} data={comment} />
+              ))
+                )
+              }
+            </div>
+
         </div>
     );
 }
