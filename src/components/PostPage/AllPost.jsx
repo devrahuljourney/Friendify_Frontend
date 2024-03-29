@@ -11,16 +11,21 @@ export default function AllPost() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // Fetch and set feed data based on the selected tab
-        if (tab === "1") {
-            getFeedFromAllUsers(token)
-                .then(data => setFeedData(data))
-                .catch(error => console.log("Error fetching feed from all users:", error));
-        } else if (tab === "2") {
-            getFeedFromFollower(token)
-                .then(data => setFeedData(data))
-                .catch(error => console.log("Error fetching feed from followers:", error));
-        }
+        const fetchFeedData = async () => {
+            try {
+                if (tab === "1") {
+                    const data = await getFeedFromAllUsers(token);
+                    setFeedData(data);
+                } else if (tab === "2") {
+                    const data = await getFeedFromFollower(token);
+                    setFeedData(data);
+                }
+            } catch (error) {
+                console.log("Error fetching feed:", error);
+            }
+        };
+
+        fetchFeedData();
     }, [tab, token]);
 
     return (
@@ -29,11 +34,19 @@ export default function AllPost() {
                 <button onClick={() => setTab("1")} className={tab === "1" ? "border-b-4 border-[#38598b]" : ""}>For You</button>
                 <button onClick={() => setTab("2")} className={tab === "2" ? "border-b-4 border-[#38598b]" : ""}>Following</button>
             </div>
-            <div>
-                {feedData.map(post => (
-                    <PostCard key={post.id} post={post} />
-                ))}
-            </div>
+            {
+                feedData.length > 0 ? (
+                    <div>
+                        {feedData.map(post => (
+                            <PostCard key={post.id} post={post} />
+                        ))}
+                    </div>
+                ) : (
+                    <div>
+                        {tab === "1" ? "There is No Post to show" : "You Haven't followed anyone or There is no post to show"}
+                    </div>
+                )
+            }
         </div>
     );
 }

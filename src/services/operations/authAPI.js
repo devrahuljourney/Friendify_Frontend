@@ -96,9 +96,10 @@ export function login(email,password,navigate){
             dispatch(setToken(response.data.token));
             dispatch(setLogin(true));
 
-            dispatch(setUser({...response.data.user}));
+            dispatch(setUser({...response.data.existingUser}));
             localStorage.setItem("token", JSON.stringify(response.data.token))
-            localStorage.setItem("user", JSON.stringify(response.data.user))
+            localStorage.setItem("user", JSON.stringify(response.data.existingUser
+                ))
             localStorage.setItem("loggedIn", JSON.stringify("true"))
 
             navigate("/")

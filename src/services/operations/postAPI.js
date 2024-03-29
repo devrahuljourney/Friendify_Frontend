@@ -29,6 +29,7 @@ export const createPost = async (data, token, dispatch) => {
 
         toast.success("Post Uploaded Successfully");
         result = response?.data?.post;
+        console.log("post result ", result)
         dispatch(setPosts(result));
     } catch (error) {
         console.log("CREATE POST API ERROR:", error)
@@ -98,7 +99,7 @@ export const getPostById = async (postId, token) => {
         if (!response?.data?.success) {
             throw new Error("Could not fetch post by ID");
         }
-
+        
         return response?.data?.post;
     } catch (error) {
         console.log("GET POST BY ID API ERROR:", error);
@@ -117,7 +118,7 @@ export const getFeedFromAllUsers = async (token) => {
         if (!response?.data?.success) {
             throw new Error("Could not fetch feed from all users");
         }
-
+        console.log("post result ", response?.data?.posts)
         return response?.data?.posts;
     } catch (error) {
         console.log("GET FEED FROM ALL USERS API ERROR:", error);
@@ -137,6 +138,7 @@ export const getFeedFromFollower = async (token) => {
             throw new Error("Could not fetch feed from followers");
         }
 
+        console.log("post result ", response?.data?.posts)
         return response?.data?.posts;
     } catch (error) {
         console.log("GET FEED FROM FOLLOWER API ERROR:", error);
