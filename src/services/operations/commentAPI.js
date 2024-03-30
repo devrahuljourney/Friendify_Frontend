@@ -12,7 +12,12 @@ export const createComment = async (postId, commentData, token) => {
     let result = null;
     const toastId = toast.loading("Loading...");
     try {
-        const response = await apiconnector("POST", CREATE_COMMENT(postId), commentData, {
+        // Stringify only the comment data
+        const comment = JSON.stringify(commentData);
+
+        const response = await apiconnector("POST", CREATE_COMMENT(postId), {
+            comment : commentData
+        }, {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         });
@@ -33,6 +38,8 @@ export const createComment = async (postId, commentData, token) => {
         toast.dismiss(toastId);
     }
 };
+
+
 
 export const deleteComment = async (commentId, token) => {
     const toastId = toast.loading("Loading...");
