@@ -30,13 +30,13 @@ export default function AllPost() {
 
     return (
         <div>
-            <div className={`w-full flex justify-evenly items-center p-3 border-b-2 border-gray-400 ${dark ? 'dark' : ''}`}>
+            <div className={` mt-4 mb-7 font-bold  w-full flex justify-evenly items-center p-3 border-b-2 border-gray-400 ${dark ? 'dark' : 'posttab'}`}>
                 <button onClick={() => setTab("1")} className={tab === "1" ? "border-b-4 border-[#38598b]" : ""}>For You</button>
                 <button onClick={() => setTab("2")} className={tab === "2" ? "border-b-4 border-[#38598b]" : ""}>Following</button>
             </div>
             {
                 feedData.length > 0 ? (
-                    <div>
+                    <div className='p-10' >
                         {feedData.map(post => (
                             <PostCard key={post.id} post={post} />
                         ))}

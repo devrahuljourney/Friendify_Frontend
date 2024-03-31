@@ -48,46 +48,54 @@ export default function PostCard({ post }) {
             .catch(error => console.error('Error copying link:', error));
     };
 
+    const {dark} = useSelector((state) => state.profile)
     return (
-        <div>
-            <Link to={`/profile/${post?.userId?._id}`} >
-                <div className='w-[40px] h-[40px]'>
+        <div className= {`post border-[3px] border-gray-400 ${dark ? "dark" : " bg-[#5c5470] "}  shadow- shadow-gray-400 rounded-lg mb-4 p-4 `}>
+            <Link to={`/profile/${post?.userId?._id}`} className="flex items-center mb-2">
+                <div className='w-12 h-12 overflow-hidden rounded-full mr-2'>
                     {post?.userId?.additionalDetails?.image ? (
-                        <img src={post?.userId?.additionalDetails?.image} alt='profileimage' />
+                        <img src={post?.userId?.additionalDetails?.image} alt='profileimage' className="object-cover w-full h-full" />
                     ) : (
-                        <div>No Image</div>
+                        <div className="bg-gray-300 w-full h-full flex items-center justify-center text-gray-500 text-lg">No Image</div>
                     )}
                 </div>
                 <div>
-                    <p>{post?.userId?.firstname} {post?.userId?.lastname}</p>
-                    <p>{formatedDate}</p>
+                    <p className="text-xl font-semibold text-gray-900 dark:text-gray-200">{post?.userId?.firstname} {post?.userId?.lastname}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{formatedDate}</p>
                 </div>
             </Link>
 
-            <div>
-                <p>{post?.caption}</p>
+            <div className="mb-4">
+                <p className="text-lg text-gray-800 dark:text-gray-200">{post?.caption}</p>
                 {post?.file && (
                     <div>
-                        <img src={post?.file} alt='postimage' />
+                        <img src={post?.file} alt='postimage' className="mt-2 rounded-lg shadow" />
                     </div>
                 )}
             </div>
-            <div>
-                <button onClick={() => console.log("Like button clicked")}>
-                    {post?.likes?.some(like => like.userId === user?._id) ? <FcLike /> : <FaRegHeart />} {post?.likes?.length}
+            <div className="flex items-center justify-between mb-4">
+                <button onClick={() => console.log("Like button clicked")} className="flex items-center text-gray-600 dark:text-gray-400">
+                    {post?.likes?.some(like => like.userId === user?._id) ? <FcLike className="mr-1" /> : <FaRegHeart className="mr-1" />} {post?.likes?.length}
                 </button>
-                <button onClick={() => setCommentShow(!commentShow)} ><FaRegCommentAlt /> {comments?.length}</button> {/* Use comments state for length */}
-                <button onClick={handleShare} ><IoMdShare /></button>
+                <button onClick={() => setCommentShow(!commentShow)} className="flex items-center text-gray-600 dark:text-gray-400">
+                    <FaRegCommentAlt className="mr-1" /> {comments?.length}
+                </button>
+                <button onClick={handleShare} className="flex items-center text-gray-600 dark:text-gray-400">
+                    <IoMdShare className="mr-1" />
+                </button>
             </div>
             <div>
                 {commentShow && (
-                    <div>
-                        <form>
-                            <input type='text' name='commentData' value={commentData} onChange={handleChange} placeholder='Enter Your Comment' />
-                            <button onClick={handleReply}>Reply</button>
+                    <div className='border-t-2 border-gray-400 ' >
+                        <form className="mb-4 p-2 flex gap-4 ">
+                            <textarea type='text' name='commentData' value={commentData} onChange={handleChange} placeholder='Add a comment...' className= {` ${dark ? " bg-[#5c5470] " : " bg-[#dbd8e3] "}  placeholder:text-[19px] border border-gray-400  dark:border-gray-600 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-400 dark:text-gray-200 `} />
+                            <button onClick={handleReply} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg ml-2 focus:outline-none">Reply</button>
                         </form>
                         
+                        <div className={`${dark ? " bg-[#5c5470] " : " bg-[#dbd8e3] "}  rounded-lg  `} >
                         <CommentCard  comments={comments} />
+                        </div>
+                        
                     </div>
                 )}
             </div>

@@ -13,3 +13,20 @@ box-shadow:  35px 35px 70px #bab8c1,
     background-color: #352f44;
     color: #fff;
 }
+/* .post {
+    border-radius: 10px;
+background: linear-gradient(145deg, #393249, #302a3d);
+box-shadow:  10px 10px 50px #2b2738,
+             -10px -10px 100px #3f3750;
+}
+
+.posttab {
+    border-radius: 10px;
+background: linear-gradient(145deg, #f7faff, #d0d3dd);
+box-shadow:  10px 1px 50px #5c5e62,
+             -10px -10px 50px #ffffff;
+} */
+
+.sc::-webkit-scrollbar {
+    display: none;
+  }

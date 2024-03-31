@@ -31,7 +31,7 @@ export default function SIdebar() {
     }, []);
 
     return (
-        <div className={` ${dark ? "dark" : " bg-[#dbd8e3] " } md:p-8 p-2  flex flex-col md:justify-start  border-r-[2px] border-gray-400 md:item-start gap-5 font-bold md:w-[250px] w-[70%] h-screen  z-20 md:rounded-r-[0%] rounded-r-lg   md:mt-0 mt-10 md:py-7 py-10 md:px-3 px-5  `} >
+        <div className={` ${dark ? "dark" : " bg-[#dbd8e3] " } md:p-8 p-2  flex flex-col md:justify-start  border-r-[2px] border-gray-400 md:item-start gap-5 font-bold md:w-[550px] w-[70%] h-screen  z-20 md:rounded-r-[0%] rounded-r-lg   md:mt-0 mt-10 md:py-7 py-14 md:px-8 px-5  `} >
             <div className="flex justify-center items-start flex-col gap-5   gap-x-2">
                 {sidebarLinks.map((link) => (
                     <SidebarLink key={link.id} link={link} iconName={link.icon} />
