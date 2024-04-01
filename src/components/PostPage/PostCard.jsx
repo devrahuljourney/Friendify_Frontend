@@ -73,24 +73,33 @@ export default function PostCard({ post }) {
                     </div>
                 )}
             </div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center px-6 justify-between mb-4">
                 <button onClick={() => console.log("Like button clicked")} className="flex items-center text-gray-600 ">
-                    {post?.likes?.some(like => like.userId === user?._id) ? <FcLike className="mr-1" /> : <FaRegHeart className="mr-1" />} {post?.likes?.length}
+                    {post?.likes?.some(like => like.userId === user?._id) ? <FcLike style={{width:"23px" , height:"23px"}} className="mr-1" /> : <FaRegHeart style={{width:"23px" , height:"23px"}} className="mr-1" />} {post?.likes?.length}
                 </button>
                 <button onClick={() => setCommentShow(!commentShow)} className="flex items-center text-gray-600 ">
-                    <FaRegCommentAlt className="mr-1" /> {comments?.length}
+                    <FaRegCommentAlt style={{width:"23px" , height:"23px"}} className="mr-1" /> {comments?.length}
                 </button>
                 <button onClick={handleShare} className="flex items-center text-gray-600 ">
-                    <IoMdShare className="mr-1" />
+                    <IoMdShare style={{width:"23px" , height:"23px"}} className="mr-1" />
                 </button>
             </div>
+            <form className="mb-4 p-2 flex gap-4 ">
+              <div className='w-12 h-12   '>
+              {user?.additionalDetails?.image ? (
+              <img src={user?.additionalDetails?.image} alt='profileimage' className=" rounded-full  w-full " />
+               ) : (
+               <div className="bg-gray-300 w-full h-full flex items-center justify-center rounded-full text-gray-500 text-lg">No Image</div>
+               )}
+              </div>
+
+                <input type='text' name='commentData' value={commentData} onChange={handleChange} placeholder='Add a comment...' className= {` ${dark ? " bg-[#5c5470] " : " bg-[#dbd8e3] "}  placeholder:text-[19px] border border-gray-400  dark:border-gray-600 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-400 dark:text-gray-200 `} />
+                <button onClick={handleReply} className = {`${dark ? "dark-highlight" : "light-highlight"} font-bold  text-white font-semibold py-2 px-4 rounded-lg ml-2 focus:outline-none`}>Reply</button>
+            </form>
             <div>
                 {commentShow && (
                     <div className='border-t-2 border-gray-400 ' >
-                        <form className="mb-4 p-2 flex gap-4 ">
-                            <textarea type='text' name='commentData' value={commentData} onChange={handleChange} placeholder='Add a comment...' className= {` ${dark ? " bg-[#5c5470] " : " bg-[#dbd8e3] "}  placeholder:text-[19px] border border-gray-400  dark:border-gray-600 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-400 dark:text-gray-200 `} />
-                            <button onClick={handleReply} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg ml-2 focus:outline-none">Reply</button>
-                        </form>
+                        
                         
                         <div className={`${dark ? " " : "light"}  rounded-lg  `} >
                         <CommentCard  comments={comments} />
