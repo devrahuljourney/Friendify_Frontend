@@ -10,7 +10,7 @@ box-shadow:  35px 35px 70px #bab8c1,
 }
 
 .dark {
-    background-color: #352f44;
+    background-color: #1A1A1A;
     color: #fff;
 }
 /* .post {
@@ -27,6 +27,26 @@ box-shadow:  10px 1px 50px #5c5e62,
              -10px -10px 50px #ffffff;
 } */
 
+
+.light {
+    background-color: #E5F0FE;
+}
 .sc::-webkit-scrollbar {
     display: none;
   }
+
+.dark-card{
+    background-color: #282828;
+} 
+
+.light-card {
+    background-color: #FFFFFF;
+}
+
+.dark-highlight{
+    background-color: #FFFD00;
+    color: #000;
+}
+.light-highlight{
+    background-color: #E5F0FE;
+}

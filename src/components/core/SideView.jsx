@@ -5,6 +5,6 @@ export default function SideView() {
 
     const {dark} = useSelector((state) => state.profile)
   return (
-    <div className={` ${dark ? "dark" : "bg-[#dbd8e3] "} h-screen w-[400px] `} >SideView</div>
+    <div className={` ${dark ? "dark" : "bg-[#E5F0FE] "} h-screen w-[400px] `} >SideView</div>
   )
 }

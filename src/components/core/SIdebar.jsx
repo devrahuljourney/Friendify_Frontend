@@ -31,15 +31,16 @@ export default function SIdebar() {
     }, []);
 
     return (
-        <div className={` ${dark ? "dark" : " bg-[#dbd8e3] " } md:p-8 p-2  flex flex-col md:justify-start  border-r-[2px] border-gray-400 md:item-start gap-5 font-bold md:w-[550px] w-[70%] h-screen  z-20 md:rounded-r-[0%] rounded-r-lg   md:mt-0 mt-10 md:py-7 py-14 md:px-8 px-5  `} >
+        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7  `} >
+            <div className={`  ${dark ? "dark-card" : " light-card " }  rounded-xl  flex flex-col md:justify-start   md:item-start gap-5 font-bold md:w-[300px] w-[70%]   z-20  p-7  `} >
             <div className="flex justify-center items-start flex-col gap-5   gap-x-2">
                 {sidebarLinks.map((link) => (
                     <SidebarLink key={link.id} link={link} iconName={link.icon} />
                 ))}
             </div>
 
-            <button className="flex items-center gap-x-2" onClick={darkModeHandler}>
-                {isDark ? (
+            <button className="flex items-center p-2 gap-x-2" onClick={darkModeHandler}>
+                {!isDark ? (
                     <div className="flex items-center gap-x-2">
                         <MdDarkMode className="text-2xl  "/>
                         <p className=''>Dark</p> {/* Hide on small screens */}
@@ -62,7 +63,7 @@ export default function SIdebar() {
                         btn2Handler: () => setConfirmationModal(null),
                     })
                 }
-                className="text-sm font-medium text-richblack-300"
+                className="text-sm p-2 font-medium text-richblack-300"
             >
                 <div className="flex items-center gap-x-2">
                     <VscSignOut className="text-2xl  " />
@@ -71,6 +72,7 @@ export default function SIdebar() {
             </button>
 
             {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+        </div>
         </div>
     );
 }

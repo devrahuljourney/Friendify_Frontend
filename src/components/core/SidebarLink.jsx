@@ -1,6 +1,6 @@
 import React from 'react';
-import * as Icons from "react-icons/vsc" // Import all Material Design icons
-import { useDispatch } from 'react-redux';
+import * as Icons from "react-icons/vsc";
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 
 export default function SidebarLink({ link, iconName }) {
@@ -8,16 +8,18 @@ export default function SidebarLink({ link, iconName }) {
     const location = useLocation();
     const dispatch = useDispatch();
 
-    // This function seems to have a typo and might cause infinite recursion
+    const {dark} = useSelector((state) =>  state.profile)
+
     const matchRoute = (route) => {
-        return matchRoute({ path: route }, location.pathname);
+        // Check if the current location pathname matches the route path
+        return location.pathname === route;
     };
 
     return (
-        <NavLink  to={link.path}>
-            <div className="flex justify-center items-center gap-x-2" >
-                <Icon className="text-2xl  " />
-                <span  className='' >{link.name}</span>
+        <NavLink to={link.path}>
+            <div className={` ${matchRoute(link.path) ?  `${dark ? "dark-highlight" : "light-highlight"}` : ''} flex justify-center p-2 rounded-xl items-center gap-x-2`}>
+                <Icon className="text-2xl" />
+                <span>{link.name}</span>
             </div>
         </NavLink>
     );

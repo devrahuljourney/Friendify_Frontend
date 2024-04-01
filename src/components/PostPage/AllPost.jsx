@@ -29,14 +29,14 @@ export default function AllPost() {
     }, [tab, token]);
 
     return (
-        <div>
-            <div className={` mt-4 mb-7 font-bold  w-full flex justify-evenly items-center p-3 border-b-2 border-gray-400 ${dark ? 'dark' : 'posttab'}`}>
-                <button onClick={() => setTab("1")} className={tab === "1" ? "border-b-4 border-[#38598b]" : ""}>For You</button>
-                <button onClick={() => setTab("2")} className={tab === "2" ? "border-b-4 border-[#38598b]" : ""}>Following</button>
+        <div className='p-7' >
+            <div className={` mt-4 mb-2 font-bold  w-full flex justify-evenly items-center p-4 rounded-xl   ${dark ? 'dark-card' : 'light-card'}`}>
+                <button onClick={() => setTab("1")} className={`${tab === "1" ? `${dark ? "border-b-4 border-[#FFFD00]" : "border-b-4 border-[#c5F3EE"}` : ""}`}>For You</button>
+                <button onClick={() => setTab("2")} className={`${tab === "2" ? `${dark ? "border-b-4 border-[#FFFD00]" : "border-b-4 border-[#c5F3EE"}` : ""}`}>Following</button>
             </div>
             {
                 feedData.length > 0 ? (
-                    <div className='p-10' >
+                    <div className='' >
                         {feedData.map(post => (
                             <PostCard key={post.id} post={post} />
                         ))}
