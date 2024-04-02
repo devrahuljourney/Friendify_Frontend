@@ -7,8 +7,9 @@ import { IoMdShare } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import CommentCard from './CommentCard';
 import { createComment } from '../../services/operations/commentAPI';
+import { createLike, deleteLike } from '../../services/operations/likeAPI';
 
-export default function PostCard({ post }) {
+export default function PostCard({ post , fetchFeedData }) {
     const createdAt = post.createdAt;
     const formatedDate = formatDate(createdAt);
 
@@ -23,6 +24,28 @@ export default function PostCard({ post }) {
         setCommentData(event.target.value);
     };
 
+    const handleLike = async () => {
+        try {
+            console.log("Token:", token);
+
+            const alreadyLiked = post?.likes?.some(like => like.userId === user?._id);
+            if (alreadyLiked) {
+                const userLike = post.likes.find(like => like.userId === user?._id);
+                const likeId = userLike._id;
+                await deleteLike(likeId, token);
+                
+            } else {
+                
+                await createLike(post._id, token);
+                
+            }
+            fetchFeedData()
+            //window.location.reload();
+        } catch (error) {
+            console.error("Error toggling like:", error);
+        }
+    };
+    
     const handleReply = async (e) => {
         e.preventDefault();
         try {
@@ -74,7 +97,7 @@ export default function PostCard({ post }) {
                 )}
             </div>
             <div className="flex items-center px-6 justify-between mb-4">
-                <button onClick={() => console.log("Like button clicked")} className="flex items-center text-gray-600 ">
+                <button onClick={handleLike} className="flex items-center text-gray-600 ">
                     {post?.likes?.some(like => like.userId === user?._id) ? <FcLike style={{width:"23px" , height:"23px"}} className="mr-1" /> : <FaRegHeart style={{width:"23px" , height:"23px"}} className="mr-1" />} {post?.likes?.length}
                 </button>
                 <button onClick={() => setCommentShow(!commentShow)} className="flex items-center text-gray-600 ">

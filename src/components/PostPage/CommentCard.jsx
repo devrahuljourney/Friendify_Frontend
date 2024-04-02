@@ -7,9 +7,9 @@ export default function CommentCard({ comments }) {
 
   const {dark} = useSelector((state) => state.profile)
   return (
-    <div className="  shadow-md rounded-lg p-4  ">
+    <div className="  shadow-md rounded-lg p-4 w-full  ">
       {comments.map(comment => (
-        <div key={comment._id} className="flex items-start mb-4">
+        <div key={comment._id} className="flex items-start mb-4  ">
           {/* User profile image */}
           <div className="w-12 h-12 mr-4 overflow-hidden rounded-full">
             <img src={comment.userId.additionalDetails?.image} alt='profileimage' className="w-full h-full object-cover" />
@@ -31,7 +31,7 @@ export default function CommentCard({ comments }) {
           </div>
           {/* Delete button for the comment creator */}
           {user?._id === comment.userId?._id && (
-            <button className="ml-4 px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none"> <MdOutlineDeleteSweep/> </button>
+            <button className="ml-4 px-2 py-1 text-red-500 hover:text-white text-xl rounded-md hover:bg-red-600 focus:outline-none"> <MdOutlineDeleteSweep/> </button>
           )}
         </div>
       ))}

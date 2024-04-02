@@ -10,20 +10,22 @@ export default function AllPost() {
     const [feedData, setFeedData] = useState([]);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const fetchFeedData = async () => {
-            try {
-                if (tab === "1") {
-                    const data = await getFeedFromAllUsers(token);
-                    setFeedData(data);
-                } else if (tab === "2") {
-                    const data = await getFeedFromFollower(token);
-                    setFeedData(data);
-                }
-            } catch (error) {
-                console.log("Error fetching feed:", error);
+    const fetchFeedData = async () => {
+        try {
+            if (tab === "1") {
+                const data = await getFeedFromAllUsers(token);
+                setFeedData(data);
+            } else if (tab === "2") {
+                const data = await getFeedFromFollower(token);
+                setFeedData(data);
             }
-        };
+        } catch (error) {
+            console.log("Error fetching feed:", error);
+        }
+    };
+
+    useEffect(() => {
+        
 
         fetchFeedData();
     }, [tab, token]);
@@ -38,7 +40,7 @@ export default function AllPost() {
                 feedData.length > 0 ? (
                     <div className='' >
                         {feedData.map(post => (
-                            <PostCard key={post.id} post={post} />
+                            <PostCard key={post.id} post={post} fetchFeedData= {fetchFeedData} />
                         ))}
                     </div>
                 ) : (
