@@ -10,9 +10,9 @@ const BASE_URL = "http://localhost:4000/api/v1"
 // Function to create a like for a post
 export const createLike = async (postId, token) => {
     try {
-        const url = `${BASE_URL}/like/createlike/${postId}`;
+        //const url = `${BASE_URL}/like/createlike/${postId}`;
         
-        const response = await fetch(url, {
+        const response = await fetch(CREATE_LIKE(postId), {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -38,9 +38,9 @@ export const createLike = async (postId, token) => {
 // Function to delete a like for a post
 export const deleteLike = async (likeId, token) => {
     try {
-        const url = `${BASE_URL}/like/deletelike/${likeId}`;
+        //const url = `${BASE_URL}/like/deletelike/${likeId}`;
         
-        const response = await fetch(url, {
+        const response = await fetch(DELETE_LIKE(likeId), {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
