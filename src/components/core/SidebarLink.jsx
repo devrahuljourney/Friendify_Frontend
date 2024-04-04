@@ -2,6 +2,7 @@ import React from 'react';
 import * as Icons from "react-icons/vsc";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
+import { setMenu } from '../../slices/profileSlice';
 
 export default function SidebarLink({ link, iconName }) {
     const Icon = Icons[iconName];
@@ -15,8 +16,10 @@ export default function SidebarLink({ link, iconName }) {
         return location.pathname === route;
     };
 
+    
+
     return (
-        <NavLink to={link.path}>
+        <NavLink onClick={() => dispatch( setMenu(false) )} to={link.path}>
             <div className={` ${matchRoute(link.path) ?  `${dark ? "dark-highlight" : "light-highlight"}` : ''} flex justify-center p-2 rounded-xl items-center gap-x-2`}>
                 <Icon className="text-2xl" />
                 <span>{link.name}</span>

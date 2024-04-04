@@ -25,7 +25,7 @@ function App() {
   const {dark} = useSelector((state) => state.profile)
 
   return (
-    <div className= {`App ${dark ? "dark" :"light"}`}>
+    <div className= {`App overflow-x-hidden ${dark ? "dark" :"light"}`}>
     
       <Routes>
         <Route  element={<Home />}>

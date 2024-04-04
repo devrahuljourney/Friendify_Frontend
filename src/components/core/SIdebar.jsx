@@ -8,11 +8,11 @@ import { VscSignOut } from "react-icons/vsc";
 import ConfirmationModal from '../common/ConfirmationModal';
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
-import { setDark } from '../../slices/profileSlice';
+import { setDark, setMenu } from '../../slices/profileSlice';
 
 export default function SIdebar() {
     const { dark } = useSelector((state) => state.profile);
-    const dispatch = useDispatch();
+    
     const navigate = useNavigate();
     const [confirmationModal, setConfirmationModal] = useState(null);
     const [isDark, setIsDark] = useState(dark);
@@ -30,23 +30,25 @@ export default function SIdebar() {
         }
     }, []);
 
+    const dispatch = useDispatch();
+
     return (
         <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7  `} >
             <div className={`  ${dark ? "dark-card" : " light-card " }  rounded-xl  flex flex-col md:justify-start   md:item-start gap-5 font-bold md:w-[300px] w-[70%]   z-20  p-7  `} >
             <div className="flex justify-center items-start flex-col gap-5   gap-x-2">
                 {sidebarLinks.map((link) => (
-                    <SidebarLink key={link.id} link={link} iconName={link.icon} />
+                    <SidebarLink   key={link.id} link={link} iconName={link.icon} />
                 ))}
             </div>
 
-            <button className="flex items-center p-2 gap-x-2" onClick={darkModeHandler}>
+            <button  className="flex items-center p-2 gap-x-2" onClick={darkModeHandler}>
                 {!isDark ? (
-                    <div className="flex items-center gap-x-2">
+                    <div onClick={() => dispatch( setMenu(false) )} className="flex items-center gap-x-2">
                         <MdDarkMode className="text-2xl  "/>
                         <p className=''>Dark</p> {/* Hide on small screens */}
                     </div>
                 ) : (
-                    <div className="flex items-center gap-x-2">
+                    <div onClick={() => dispatch( setMenu(false) )} className="flex items-center gap-x-2">
                         <CiLight className="text-2xl  "/>
                         <p className=''>Light</p> {/* Hide on small screens */}
                     </div>
