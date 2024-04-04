@@ -22,8 +22,10 @@ function App() {
     }
   }, [loggedIn, navigate]); 
 
+  const {dark} = useSelector((state) => state.profile)
+
   return (
-    <div className="App">
+    <div className= {`App ${dark ? "dark" :"light"}`}>
     
       <Routes>
         <Route  element={<Home />}>

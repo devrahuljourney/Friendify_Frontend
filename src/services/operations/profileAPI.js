@@ -1,26 +1,34 @@
 import toast from "react-hot-toast";
 import { apiconnector } from "../apiconnector";
-import { getProfile, createProfile, deleteProfile, followUser, unfollowUser } from "../../slices/profileSlice";
 import { profileEndpoints } from "../apis";
 
-const { GET_PROFILE, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER } = profileEndpoints;
+const { GETPROFILE, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER } = profileEndpoints;
 
 // Function to fetch user profile
 export const fetchProfile = async (token) => {
     let result = null;
     const toastId = toast.loading("Loading profile...");
+    console.log("TOKEN :", token);
     try {
-        const response = await apiconnector("GET", GET_PROFILE, null, {
-            "Authorization": `Bearer ${token}`
+        const response = await fetch(GETPROFILE, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
 
         console.log("GET PROFILE API RESPONSE ", response);
-        if (!response?.data?.success) {
-            throw new Error("Could not fetch profile");
+
+        // Check if response is successful
+        if (!response.ok) {
+            throw new Error("Failed to fetch profile");
         }
 
+        // Parse response body as JSON
+        const responseData = await response.json();
+
         toast.success("Profile retrieved successfully");
-        result = response?.data?.profile;
+        result = responseData.profile;
         return result;
     } catch (error) {
         console.log("GET PROFILE API ERROR:", error);
@@ -30,6 +38,7 @@ export const fetchProfile = async (token) => {
         toast.dismiss(toastId);
     }
 };
+
 
 // Function to create user profile
 export const createNewProfile = async (profileData, token) => {
