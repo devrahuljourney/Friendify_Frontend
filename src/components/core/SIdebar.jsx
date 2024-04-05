@@ -11,7 +11,9 @@ import { MdDarkMode } from "react-icons/md";
 import { setDark, setMenu } from '../../slices/profileSlice';
 
 export default function SIdebar() {
-    const { dark } = useSelector((state) => state.profile);
+    const { dark, user } = useSelector((state) => state.profile);
+
+    
     
     const navigate = useNavigate();
     const [confirmationModal, setConfirmationModal] = useState(null);

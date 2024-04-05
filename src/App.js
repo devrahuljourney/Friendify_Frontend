@@ -32,7 +32,7 @@ function App() {
           {/* Nested routes for Home page */}
           <Route path= "/" element = {<Post/>} />
           <Route path='/notifications' element={<Notifications />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/:userId' element={<Profile />} />
           <Route path='/search' element={<Explore />} />
         </Route>
         <Route path='/login' element={<Login />} />

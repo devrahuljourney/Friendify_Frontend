@@ -8,19 +8,18 @@ export default function SidebarLink({ link, iconName }) {
     const Icon = Icons[iconName];
     const location = useLocation();
     const dispatch = useDispatch();
-
-    const {dark} = useSelector((state) =>  state.profile)
+    const { dark, user } = useSelector((state) => state.profile);
 
     const matchRoute = (route) => {
         // Check if the current location pathname matches the route path
         return location.pathname === route;
     };
 
-    
+    const isProfileLink = link.name === 'Profile';
 
     return (
-        <NavLink onClick={() => dispatch( setMenu(false) )} to={link.path}>
-            <div className={` ${matchRoute(link.path) ?  `${dark ? "dark-highlight" : "light-highlight"}` : ''} flex justify-center p-2 rounded-xl items-center gap-x-2`}>
+        <NavLink onClick={() => dispatch(setMenu(false))} to={isProfileLink ? `/profile/${user._id}` : link.path}>
+            <div className={`${matchRoute(link.path) || (isProfileLink && location.pathname.startsWith('/profile')) ? (dark ? "dark-highlight" : "light-highlight") : ''} flex justify-center p-2 rounded-xl items-center gap-x-2`}>
                 <Icon className="text-2xl" />
                 <span>{link.name}</span>
             </div>

@@ -107,17 +107,17 @@ export default function PostCard({ post , fetchFeedData }) {
                     <IoMdShare style={{width:"23px" , height:"23px"}} className="mr-1" />
                 </button>
             </div>
-            <form className="mb-4 p-2 flex gap-4 ">
+            <form className="mb-4 md:p-2 flex gap-4 ">
               <div className='w-12 h-12   '>
               {user?.additionalDetails?.image ? (
-              <img src={user?.additionalDetails?.image} alt='profileimage' className=" rounded-full  w-full " />
+              <img src={user?.additionalDetails?.image} alt='profileimage' className=" md:inline-block hidden rounded-full  w-full " />
                ) : (
                <div className="bg-gray-300 w-full h-full flex items-center justify-center rounded-full text-gray-500 text-lg">No Image</div>
                )}
               </div>
 
                 <input type='text' name='commentData' value={commentData} onChange={handleChange} placeholder='Add a comment...' className= {` ${dark ? " bg-[#5c5470] " : " bg-[#dbd8e3] "}  placeholder:text-[19px] border border-gray-400  dark:border-gray-600 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-blue-400 dark:text-gray-200 `} />
-                <button onClick={handleReply} className = {`${dark ? "dark-highlight" : "light-highlight"} font-bold  text-white font-semibold py-2 px-4 rounded-lg ml-2 focus:outline-none`}>Reply</button>
+                <button onClick={handleReply} className = {`${dark ? "dark-highlight" : "light-highlight"}   text-white font-semibold py-2 px-4 rounded-lg ml-2 focus:outline-none`}>Reply</button>
             </form>
             <div>
                 {commentShow && (
