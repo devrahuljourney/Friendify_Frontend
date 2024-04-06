@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { apiconnector } from "../apiconnector";
 import { profileEndpoints } from "../apis";
 
-const { GETPROFILE, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER } = profileEndpoints;
+const { GETPROFILE, GET_PROFILE_BY_ID, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER } = profileEndpoints;
 
 // Function to fetch user profile
 export const fetchProfile = async (token) => {
@@ -32,6 +32,42 @@ export const fetchProfile = async (token) => {
         return result;
     } catch (error) {
         console.log("GET PROFILE API ERROR:", error);
+        toast.error(error.message);
+        return null;
+    } finally {
+        toast.dismiss(toastId);
+    }
+};
+
+
+export const fetchProfileById = async (userId,token) => {
+    let result = null;
+    const toastId = toast.loading("Loading profile...");
+    console.log("USER ID ", userId)
+    console.log("TOKEN :", token);
+    try {
+        const response = await fetch(GET_PROFILE_BY_ID(userId), {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        console.log("GET PROFILE API BY ID RESPONSE ", response);
+
+        // Check if response is successful
+        if (!response.ok) {
+            throw new Error("Failed to fetch profile");
+        }
+
+        // Parse response body as JSON
+        const responseData = await response.json();
+
+        toast.success("Profile retrieved successfully");
+        result = responseData.profile;
+        return result;
+    } catch (error) {
+        console.log("GET PROFILE BY ID API ERROR:", error);
         toast.error(error.message);
         return null;
     } finally {
@@ -108,7 +144,7 @@ export const followSelectedUser = async (userId, token) => {
         return true;
     } catch (error) {
         console.log("FOLLOW USER API ERROR:", error);
-        toast.error(error.message);
+        toast.error(error.response.data.message);
         return false;
     } finally {
         toast.dismiss(toastId);

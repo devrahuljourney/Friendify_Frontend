@@ -6,7 +6,7 @@ export default function Profile() {
 
   const {userId} = useParams();
   return (
-    <div>
+    <div className=' py-10 px-7 ' >
       <ProfilePage userId = {userId} />
     </div>
   )

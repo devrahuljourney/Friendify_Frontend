@@ -17,7 +17,7 @@ export const profileEndpoints = {
     DELETE_PROFILE : BASE_URL + "/profile/deleteprofile",
     FOLLOW_USER: (userId) => `${BASE_URL}/profile/follow/${userId}`,
     UNFOLLOW_USER : (userId) =>  `${BASE_URL}/profile/unfollow/${userId}`,
-    GET_PROFILE_BY_ID : (userId) => `${BASE_URL}/getprofilebyid/${userId}`
+    GET_PROFILE_BY_ID : (userId) => `${BASE_URL}/profile/getprofilebyid/${userId}`
 }
 
 
