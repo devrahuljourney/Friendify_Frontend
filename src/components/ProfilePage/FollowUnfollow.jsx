@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 export default function FollowUnfollow({ profileData, follow, unfollow }) {
     const userIdToFollowOrUnFollow = profileData?._id;
-    const { user } = useSelector((state) => state.profile);
+    const { user,dark } = useSelector((state) => state.profile);
     const { token } = useSelector((state) => state.auth);
 
     // State to track whether the user is followed or not
@@ -33,8 +33,8 @@ export default function FollowUnfollow({ profileData, follow, unfollow }) {
     };
 
     return (
-        <div>
-            <button 
+        <div className={`${dark ? "border-white hover:bg-[#FFFD00] hover:text-black " : "border-black hover:text-black hover:bg-[#c9ddf7] "} border-2 rounded-full font-bold py-1 px-4`} >
+            <button className='hover:dark-highlight'
                 onClick={isFollowed ? handleUnfollow : handleFollow}
             >
                 {isFollowed ? unfollow : follow}

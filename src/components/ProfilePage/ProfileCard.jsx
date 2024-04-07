@@ -33,7 +33,7 @@ export default function ProfileCard() {
                 <img src={coverImg} alt='coverimg' />
             </div>
             {profileData && (
-                <div className='flex flex-col justify-center items-center gap-5  ' >
+                <div className='flex w-[100%] flex-col justify-center items-center gap-5  ' >
                     <div className='flex flex-row  ' >
                     <div className='flex flex-col justify-start items-center' >
                         <p> { profileData.followers.length > 0 ? profileData.followers.length : "0"  } </p>
@@ -49,13 +49,13 @@ export default function ProfileCard() {
                     </div>
                     </div>
 
-                    <div className='flex flex-col justify-start gap-8 -translate-y-11 items-center' >
-                        <div className=' flex flex-col justify-center items-center' >
+                    <div className='flex w-[100%] flex-col justify-center gap-8 -translate-y-11 px-4 items-center' >
+                        <div className=' flex w-full flex-col justify-center items-center' >
                             <p className='text-[22px]  ' > {profileData.firstname} {profileData.lastname} </p>
-                            <p className='font-semibold text-gray-400  ' > {profileData?.additionalDetails?.bio} </p>
+                            <p className='font-semibold flex justify-center items-center text-gray-400  ' > {profileData?.additionalDetails?.bio} </p>
                         </div>
 
-                        <Link className={` font-semibold ${dark ? " dark-highlight  ":" light-highlight"} hover:bg-gray-200 p-3 w-full flex justify-center items-center rounded-xl `} to='/profile' >
+                        <Link className={` font-semibold ${dark ? " dark-highlight  ":" light-highlight"} hover:bg-gray-200 p-3 w-1/2 flex justify-center items-center rounded-xl `} to='/profile' >
                             My Profile
                         </Link>
                     </div>
