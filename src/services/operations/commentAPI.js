@@ -32,6 +32,7 @@ export const createComment = async (postId, commentData, token) => {
         return result;
     } catch (error) {
         console.log("CREATE COMMENT API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
     } finally {
@@ -57,6 +58,7 @@ export const deleteComment = async (commentId, token) => {
         return true;
     } catch (error) {
         console.log("DELETE COMMENT API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return false;
     } finally {

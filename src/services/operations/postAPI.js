@@ -33,6 +33,7 @@ export const createPost = async (data, token, dispatch) => {
         dispatch(setPosts(result));
     } catch (error) {
         console.log("CREATE POST API ERROR:", error)
+        toast.error(error.response.data.message);
         toast.error(error.message);
     }
 
@@ -83,6 +84,7 @@ export const deletePostAPI = async (postId, token, dispatch) => {
         dispatch(deletePost(postId))
     } catch (error) {
         console.log("DELETE POST API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
     }
 
@@ -103,6 +105,7 @@ export const getPostById = async (postId, token) => {
         return response?.data?.post;
     } catch (error) {
         console.log("GET POST BY ID API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
     }

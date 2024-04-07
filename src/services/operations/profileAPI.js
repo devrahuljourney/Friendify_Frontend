@@ -32,6 +32,7 @@ export const fetchProfile = async (token) => {
         return result;
     } catch (error) {
         console.log("GET PROFILE API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
     } finally {
@@ -68,6 +69,7 @@ export const fetchProfileById = async (userId,token) => {
         return result;
     } catch (error) {
         console.log("GET PROFILE BY ID API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
     } finally {
@@ -96,6 +98,7 @@ export const createNewProfile = async (profileData, token) => {
         return result;
     } catch (error) {
         console.log("CREATE PROFILE API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
     } finally {
@@ -120,6 +123,7 @@ export const removeProfile = async (token) => {
         return true;
     } catch (error) {
         console.log("DELETE PROFILE API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return false;
     } finally {
@@ -168,6 +172,7 @@ export const unfollowSelectedUser = async (userId, token) => {
         return true;
     } catch (error) {
         console.log("UNFOLLOW USER API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
         return false;
     } finally {

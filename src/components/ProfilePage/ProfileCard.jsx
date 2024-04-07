@@ -27,7 +27,7 @@ export default function ProfileCard() {
     }, [token]); 
 
     return (
-        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7   `}>
+        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7 mt-9  `}>
             <div className={`  ${dark ? "dark-card" : " light-card " }   rounded-xl  flex flex-col md:justify-center   md:item-center gap-5 font-bold md:w-[320px] w-[70%]   z-20    `}>
             <div className='' >
                 <img src={coverImg} alt='coverimg' />

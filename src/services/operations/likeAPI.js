@@ -31,6 +31,7 @@ export const createLike = async (postId, token) => {
         toast.success("Like Added Successfully");
     } catch (error) {
         console.log("CREATE LIKE API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
     }
 };
@@ -59,6 +60,7 @@ export const deleteLike = async (likeId, token) => {
         toast.success("Like Deleted Successfully");
     } catch (error) {
         console.log("DELETE LIKE API ERROR:", error);
+        toast.error(error.response.data.message);
         toast.error(error.message);
     }
 };
