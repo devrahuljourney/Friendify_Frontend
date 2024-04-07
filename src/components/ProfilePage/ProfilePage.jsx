@@ -11,6 +11,7 @@ import FollowUnfollow from './FollowUnfollow';
 import { FaBirthdayCake } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
+import PostCard from '../PostPage/PostCard';
 export default function ProfilePage({userId}) {
 
     const [profileData, setProfileData] = useState(null);
@@ -145,13 +146,46 @@ if (profileData?.additionalDetails?.createdAt) { // Corrected property name to c
                             )
                         }
                     </div>
+
+                    
                 </div>
+
             </div>
+
+                   <div className='flex md:-translate-y-20  -translate-y-12 p-4 flex-row font-bold  justify-start gap-4 ' >
+                     <div className='text-bold' >
+                        {
+                            profileData?.followers.length > 0 ? (profileData?.followers?.length ) : "0"
+
+                        } Followers
+                      </div>
+                      <div className='text-bold'>
+                        {
+                            profileData?.following.length > 0 ? (profileData?.following?.length ) : "0"
+
+                        } Followers
+                      </div>
+                   </div>
               
 
 
 
         </div>
+
+        <div>
+            {
+                profileData?.posts?.length > 0 ? (
+                    profileData?.posts.map((post) => 
+                          <PostCard key = {post._id} post = {post} />
+                    )
+                ) :
+                (
+                    "There is no Post"
+                )
+            }
+        </div>
     </div>
   )
+
+  {/* slidebean */}
 }
