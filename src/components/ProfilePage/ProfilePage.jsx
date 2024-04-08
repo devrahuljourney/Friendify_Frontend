@@ -30,7 +30,7 @@ export default function ProfilePage({userId}) {
 
     useEffect(() => {
         fetchProfileData()
-    }, []);
+    }, [userId]);
 
     const {dark,user} = useSelector((state) => state.profile)
     const dobString = profileData?.additionalDetails?.dob;
@@ -60,7 +60,7 @@ if (profileData?.additionalDetails?.createdAt) { // Corrected property name to c
         <div className= {`post   ${dark ? "dark-card" : " light-card  "}   rounded-lg mb-4 md:p-4 `} >
             <div className='flex gap-4' >
                 <div>
-                    <Link to="/" > < IoArrowBackCircleSharp style = {{width:"25", height:"25"}}/> </Link>
+                    <Link to="/" > < IoArrowBackCircleSharp style = {{width:"30", height:"30"}}/> </Link>
                 </div>
                 <div>
                     <p> {profileData?.firstname} {profileData?.lastname} </p>

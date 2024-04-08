@@ -18,8 +18,8 @@ export default function SidebarLink({ link, iconName }) {
     const isProfileLink = link.name === 'Profile';
 
     return (
-        <NavLink onClick={() => dispatch(setMenu(false))} to={isProfileLink ? `/profile/${user._id}` : link.path}>
-            <div className={`${matchRoute(link.path) || (isProfileLink && location.pathname.startsWith('/profile')) ? (dark ? "dark-highlight" : "light-highlight") : ''} flex justify-center p-2 rounded-xl items-center gap-x-2`}>
+        <NavLink onClick={() => dispatch(setMenu(false))} to={isProfileLink ? `/profile/${user?._id}` : link.path}>
+            <div className={`${matchRoute(link.path) || (isProfileLink && location.pathname.startsWith('/profile')) ? (dark ? "dark-highlight" : "light-highlight") : ''}  flex justify-center p-2 rounded-xl items-center gap-x-2`}>
                 <Icon className="text-2xl" />
                 <span>{link.name}</span>
             </div>

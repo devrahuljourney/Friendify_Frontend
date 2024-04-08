@@ -26,6 +26,8 @@ export default function ProfileCard() {
         fetchProfileData(); 
     }, [token]); 
 
+    const {user} = useSelector((state => state.profile))
+
     return (
         <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7 mt-9  `}>
             <div className={`  ${dark ? "dark-card" : " light-card " }   rounded-xl  flex flex-col md:justify-center   md:item-center gap-5 font-bold md:w-[320px] w-[70%]   z-20    `}>
@@ -55,7 +57,7 @@ export default function ProfileCard() {
                             <p className='font-semibold flex justify-center items-center text-gray-400  ' > {profileData?.additionalDetails?.bio} </p>
                         </div>
 
-                        <Link className={` font-semibold ${dark ? " dark-highlight  ":" light-highlight"} hover:bg-gray-200 p-3 w-1/2 flex justify-center items-center rounded-xl `} to='/profile' >
+                        <Link className={` font-semibold ${dark ? " dark-highlight  ":" light-highlight"} hover:bg-gray-200 p-3 w-1/2 flex justify-center items-center rounded-xl `} to={`/profile/${user?._id}`} >
                             My Profile
                         </Link>
                     </div>

@@ -13,33 +13,44 @@ const {
     GET_FEED_FROM_ALL_USERS,
 } = postEndpoints;
 
-export const createPost = async (data, token, dispatch) => {
+export const createPost = async (file, caption, token, dispatch) => {
     let result = null;
     const toastId = toast.loading("Loading...");
     try {
-        const response = await apiconnector("POST", CREATE_POST, data, {
-            "Content-Type": "multipart/form-data",
-            "Authorization": `Bearer ${token}`
+        // Create FormData object to send multipart/form-data
+        const formData = new FormData();
+        formData.append('file', file); // Append file
+        formData.append('caption', caption); // Append caption
+
+        const response = await fetch(CREATE_POST, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData // Set formData as body
         });
 
-        console.log("CREATE POST API RESPONSE ", response);
-        if (!response?.data?.success) {
+        // Check if response is ok
+        const data = await response.json();
+
+        console.log("CREATE POST API RESPONSE ", data);
+
+        if (!data.success) {
             throw new Error("Could not create post");
         }
-
-        toast.success("Post Uploaded Successfully");
-        result = response?.data?.post;
-        console.log("post result ", result)
-        dispatch(setPosts(result));
+        // result = data.post;
+        // dispatch(setPosts(result));
     } catch (error) {
-        console.log("CREATE POST API ERROR:", error)
-        toast.error(error.response.data.message);
+        console.error("CREATE POST API ERROR:", error);
+         toast.error(error.message);
         toast.error(error.message);
     }
 
+    // Dismiss loading toast
     toast.dismiss(toastId);
     return result;
 };
+
 
 export const editPost = async (postId, postData, token, dispatch) => {
     let result = null;

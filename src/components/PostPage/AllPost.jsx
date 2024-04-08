@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFeedFromAllUsers, getFeedFromFollower } from "../../services/operations/postAPI";
 import PostCard from './PostCard';
+import UploadPost from './UploadPost';
 
 export default function AllPost() {
     const [tab, setTab] = useState("1");
@@ -36,6 +37,7 @@ export default function AllPost() {
                 <button onClick={() => setTab("1")} className={`${tab === "1" ? `${dark ? "border-b-4 border-[#FFFD00]" : "border-b-4 border-[#c5F3EE"}` : ""}`}>For You</button>
                 <button onClick={() => setTab("2")} className={`${tab === "2" ? `${dark ? "border-b-4 border-[#FFFD00]" : "border-b-4 border-[#c5F3EE"}` : ""}`}>Following</button>
             </div>
+            <UploadPost fetchFeedData = {fetchFeedData} />
             {
                 feedData.length > 0 ? (
                     <div className='' >

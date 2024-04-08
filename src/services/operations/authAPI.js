@@ -107,7 +107,7 @@ export function login(email,password,navigate){
             navigate("/")
         } catch (error) {
             console.log("LOGIN API ERROR............", error)
-            toast.error(error.response.data.message);
+            // toast.error(error.response.data.message);
             toast.error("Login Failed")   
         }
 
