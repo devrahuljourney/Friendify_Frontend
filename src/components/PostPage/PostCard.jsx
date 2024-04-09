@@ -125,7 +125,7 @@ export default function PostCard({ post , fetchFeedData }) {
                         
                         
                         <div className={`${dark ? " " : "light"}  rounded-lg  `} >
-                        <CommentCard  comments={comments} />
+                        <CommentCard fetchFeedData = {fetchFeedData}  comments={comments} />
                         </div>
                         
                     </div>

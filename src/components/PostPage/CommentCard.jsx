@@ -2,8 +2,21 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import formatDate from '../../utils/DateFormatter';
 import { MdOutlineDeleteSweep } from "react-icons/md";
-export default function CommentCard({ comments }) {
+
+import {deleteComment} from  "../../services/operations/commentAPI"
+export default function CommentCard({ comments,fetchFeedData }) {
   const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+
+
+  const deleteCommentHandler = async (deleteId) => {
+    try {
+       await deleteComment(deleteId, token);
+       fetchFeedData();
+    } catch (error) {
+      console.log("DELETE COMMENT ERROR ", error)
+    }
+  }
 
   const {dark} = useSelector((state) => state.profile)
   return (
@@ -31,7 +44,8 @@ export default function CommentCard({ comments }) {
           </div>
           {/* Delete button for the comment creator */}
           {user?._id === comment.userId?._id && (
-            <button className="ml-4 px-2 py-1 text-red-500 hover:text-white text-xl rounded-md hover:bg-red-600 focus:outline-none"> <MdOutlineDeleteSweep/> </button>
+            <button onClick={() => deleteCommentHandler(comment?._id)} className="ml-4 px-2 py-1 text-red-500 hover:text-white text-xl rounded-md hover:bg-red-600 focus:outline-none"> <MdOutlineDeleteSweep/> </button>
+
           )}
         </div>
       ))}
