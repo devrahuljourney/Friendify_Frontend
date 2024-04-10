@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { createPost } from '../../services/operations/postAPI';
+import { Link } from 'react-router-dom';
 
 export default function UploadPost({fetchFeedData}) {
     const { dark, user } = useSelector((state) => state.profile);
@@ -36,9 +37,9 @@ export default function UploadPost({fetchFeedData}) {
         <div className={` ${dark ? "dark" : "light"}  `}>
             <form onSubmit={submitHandler} className={`rounded-lg mb-4 p-4 ${dark ? "dark-card" : "light-card"} flex flex-col `}>
                 <div className='flex flex-row gap-4 p-3 ' >
-                    <div className='w-14 h-14 rounded-full'>
+                    <Link to={`/profile/${user?._id}`} className='w-14 h-14 rounded-full'>
                         <img className='object-cover w-14 h-14 rounded-full' src={user?.additionalDetails?.image} alt='userimage' />
-                    </div>
+                    </Link>
                     <label className='  w-[80%] bg-transparent ' htmlFor="caption">
                         <input placeholder='Start a Post' className= {` border-gray-200 border-2 p-3 rounded-full  w-full bg-transparent `} id='caption' value={formData.caption} onChange={changeHandler} type='text' name='caption' />
                     </label>

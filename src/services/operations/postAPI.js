@@ -81,18 +81,23 @@ export const editPost = async (postId, postData, token, dispatch) => {
 export const deletePostAPI = async (postId, token, dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
-        const response = await apiconnector("DELETE", DELETE_POST(postId), {
-            "Content-Type": "Applications/json",
-            "Authorization": `Bearer ${token}`
+        const response = await fetch( DELETE_POST(postId) , {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
         });
 
-        console.log("DELETE POST API RESPONSE ", response);
-        if (!response?.data?.success) {
-            throw new Error("Could not able to delete post");
+        const data = await response.json();
+
+        console.log("DELETE POST API RESPONSE ", data);
+
+        if (!data.success) {
+            throw new Error("Could not delete Post");
         }
 
-        toast.success("Post deleted Successfully");
-        dispatch(deletePost(postId))
+        toast.success("POST Deleted Successfully");
     } catch (error) {
         console.log("DELETE POST API ERROR:", error);
         toast.error(error.response.data.message);

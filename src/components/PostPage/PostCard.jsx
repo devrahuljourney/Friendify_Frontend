@@ -8,6 +8,10 @@ import { useSelector } from 'react-redux';
 import CommentCard from './CommentCard';
 import { createComment } from '../../services/operations/commentAPI';
 import { createLike, deleteLike } from '../../services/operations/likeAPI';
+import FollowUnfollow from '../ProfilePage/FollowUnfollow';
+import renderIcon from '../../utils/icon';
+import { MdOutlineDeleteSweep } from "react-icons/md";
+import { deletePostAPI } from '../../services/operations/postAPI';
 
 export default function PostCard({ post , fetchFeedData }) {
     const createdAt = post.createdAt;
@@ -23,6 +27,15 @@ export default function PostCard({ post , fetchFeedData }) {
     const handleChange = (event) => {
         setCommentData(event.target.value);
     };
+
+    const deletePostHandler = async (postId, token) => {
+        try {
+             await deletePostAPI(postId,token);
+             fetchFeedData();
+        } catch (error) {
+            console.log("ERROR IN POST DELETE ", error)
+        }
+    }
 
     const handleLike = async () => {
         try {
@@ -63,6 +76,7 @@ export default function PostCard({ post , fetchFeedData }) {
     
     const handleShare = () => {
         const postLink = `${window.location.origin}/post/${post._id}`;
+        console.log("Post ", post)
         navigator.clipboard.writeText(postLink)
             .then(() => {
                 console.log("loggedIn user data ", user);
@@ -74,7 +88,8 @@ export default function PostCard({ post , fetchFeedData }) {
     const {dark} = useSelector((state) => state.profile)
     return (
         <div className= {`post   ${dark ? "dark-card" : " light-card  "}   rounded-lg mb-4 p-4 `}>
-            <Link to={`/profile/${post?.userId?._id}`} className="flex items-center mb-2">
+            <div  className="flex justify-between items-center mb-2">
+              <Link to={`/profile/${post?.userId?._id}`} className='flex flex-row' >
                 <div className='w-12 h-12 overflow-hidden rounded-full mr-2'>
                     {post?.userId?.additionalDetails?.image ? (
                         <img src={post?.userId?.additionalDetails?.image} alt='profileimage' className="object-cover w-full h-full" />
@@ -86,7 +101,19 @@ export default function PostCard({ post , fetchFeedData }) {
                     <p className="text-xl font-semibold ">{post?.userId?.firstname} {post?.userId?.lastname}</p>
                     <p className = { `text-sm ${dark ? " text-[#FFFD00] " : " text-gary-700 "} ` }>{formatedDate}</p>
                 </div>
-            </Link>
+              </Link>
+
+                <div>
+                  {
+                    user?._id === post?.userId?._id ? ( 
+                        <button onClick={() => deletePostHandler(post?._id, token)} className='hover:bg-red-500 transition-all duration-200 p-2 rounded-full ' >  <MdOutlineDeleteSweep style={{width:"25px", height:"25px"}} /> </button>
+                     ) :
+                    (
+                        <FollowUnfollow profileData={post?.userId}  follow={renderIcon("SlUserFollow")} unfollow={renderIcon("SlUserUnfollow")} />
+                    )
+                  }
+                </div>
+            </div>
 
             <div className="mb-4">
                 <p className= {` text-lg p-2 text-semibold ${dark ? "text-white" : "text-black"} `}>{post?.caption}</p>

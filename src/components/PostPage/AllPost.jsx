@@ -15,6 +15,7 @@ export default function AllPost() {
         try {
             if (tab === "1") {
                 const data = await getFeedFromAllUsers(token);
+                console.log("FEED DATA ", feedData)
                 setFeedData(data);
             } else if (tab === "2") {
                 const data = await getFeedFromFollower(token);

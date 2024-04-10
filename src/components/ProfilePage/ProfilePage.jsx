@@ -23,6 +23,7 @@ export default function ProfilePage({userId}) {
             const response = await fetchProfileById(userId,token);
             setProfileData(response);
             console.log("Response ", response)
+            console.log("Profile Data " , profileData)
         } catch (error) {
             console.log("Error in api fetching ", error)
         }
