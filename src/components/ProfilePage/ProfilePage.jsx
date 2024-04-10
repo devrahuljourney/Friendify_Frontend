@@ -23,7 +23,6 @@ export default function ProfilePage({userId}) {
             const response = await fetchProfileById(userId,token);
             setProfileData(response);
             console.log("Response ", response)
-            console.log("Profile Data " , profileData)
         } catch (error) {
             console.log("Error in api fetching ", error)
         }
@@ -164,7 +163,7 @@ if (profileData?.additionalDetails?.createdAt) { // Corrected property name to c
                         {
                             profileData?.following.length > 0 ? (profileData?.following?.length ) : "0"
 
-                        } Followers
+                        } Following
                       </div>
                    </div>
               
