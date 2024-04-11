@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { apiconnector } from "../apiconnector";
 import { profileEndpoints } from "../apis";
+import { setProfileData } from "../../slices/profileSlice";
 
 const { GETPROFILE, GET_PROFILE_BY_ID, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER } = profileEndpoints;
 
@@ -32,7 +33,7 @@ export const fetchProfile = async (token) => {
         return result;
     } catch (error) {
         console.log("GET PROFILE API ERROR:", error);
-        toast.error(error.response.data.message);
+        // toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
     } finally {
@@ -41,11 +42,7 @@ export const fetchProfile = async (token) => {
 };
 
 
-export const fetchProfileById = async (userId,token) => {
-    let result = null;
-    const toastId = toast.loading("Loading profile...");
-    console.log("USER ID ", userId)
-    console.log("TOKEN :", token);
+export const fetchProfileById = async (userId, token) => {
     try {
         const response = await fetch(GET_PROFILE_BY_ID(userId), {
             method: 'GET',
@@ -63,17 +60,19 @@ export const fetchProfileById = async (userId,token) => {
 
         // Parse response body as JSON
         const responseData = await response.json();
+        console.log("Response data from FETCH PROFILE BY ID ", responseData);
 
         toast.success("Profile retrieved successfully");
-        result = responseData.profile;
+        
+        const result = responseData.profile;
+        console.log("result ", result);
+
         return result;
     } catch (error) {
         console.log("GET PROFILE BY ID API ERROR:", error);
-        toast.error(error.response.data.message);
+        // toast.error(error.response.data.message);
         toast.error(error.message);
         return null;
-    } finally {
-        toast.dismiss(toastId);
     }
 };
 

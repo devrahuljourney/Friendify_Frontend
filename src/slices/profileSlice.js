@@ -4,7 +4,8 @@ const initialState = {
     user:  localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) :null,
     loading: false,
     menu:false,
-    dark: localStorage.getItem("dark") ? JSON.parse(localStorage.getItem("dark")) : false
+    dark: localStorage.getItem("dark") ? JSON.parse(localStorage.getItem("dark")) : false,
+    profileData:null,
 };
 
 const profileSlice = createSlice({
@@ -22,9 +23,13 @@ const profileSlice = createSlice({
           },
           setMenu(state, value) {
             state.menu = value.payload
-          }
+          },
+          
+        setProfileData (state, action) {
+            state.profileData = action.payload;
+        }
     },
 });
 
-export const {setUser, setMenu, setLoading, setDark} = profileSlice.actions;
+export const {setUser, setMenu, setLoading, setDark, setProfileData} = profileSlice.actions;
 export default profileSlice.reducer;

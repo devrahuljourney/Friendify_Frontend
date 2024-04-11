@@ -4,6 +4,7 @@ const initialState = {
     posts: [],
     loading: false,
     error: null,
+
 };
 
 const postSlice = createSlice({
@@ -31,7 +32,7 @@ const postSlice = createSlice({
         },
         setError(state, action) {
             state.error = action.payload;
-        },
+        }
     },
 });
 

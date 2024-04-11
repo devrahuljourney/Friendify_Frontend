@@ -11,10 +11,14 @@ export default function FollowUnfollow({ profileData, follow, unfollow }) {
     const [isFollowed, setIsFollowed] = useState(false);
 
     // Check if the user is already followed when component mounts
-    useEffect(() => {
-        const isAlreadyFollowed = profileData?.followers.some((userId) => userId === user?._id);
+    // Check if the user is already followed when component mounts
+useEffect(() => {
+    if (profileData && profileData.followers) {
+        const isAlreadyFollowed = profileData.followers.some((userId) => userId === user?._id);
         setIsFollowed(isAlreadyFollowed);
-    }, [profileData, user]);
+    }
+}, [profileData, user]);
+
 
     // Function to handle follow action
     const handleFollow = async () => {
