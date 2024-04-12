@@ -11,6 +11,7 @@ import Profile from './page/Profile';
 import Explore from './page/Explore';
 import Notifications from './page/Notifications'; 
 import Post from './page/Post';
+import EditProfile from './components/ProfilePage/EditProfile';
 
 function App() {
   const { loggedIn } = useSelector((state) => state.auth);
@@ -33,6 +34,7 @@ function App() {
           <Route path= "/" element = {<Post/>} />
           <Route path='/notifications' element={<Notifications />} />
           <Route path='/profile/:userId' element={<Profile />} />
+          <Route path='/edit/:userId' element= {<EditProfile/>} />
           <Route path='/search' element={<Explore />} />
         </Route>
         <Route path='/login' element={<Login />} />
