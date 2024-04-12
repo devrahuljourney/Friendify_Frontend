@@ -19,7 +19,7 @@ export default function Home() {
           menu ? ( <GrClose/> ) : ( <GiHamburgerMenu/>)
          }
       </div>
-      <div className={ ` md:flex md:flex-col md:relative absolute md:w-[300px] w-full top-10 h-full transition-all transition-200 ${menu ? " right-0" : " md:right-0 right-[-500px] "} ` } >
+      <div className={ ` md:flex md:flex-col md:relative absolute md:w-[300px] w-full top-10 h-full transition-all transition-200 ${menu ? " right-0" : " md:right-0 right-[-500px] "}  ` } >
         <Sidebar/>
         <BelowMenu/>
       </div>

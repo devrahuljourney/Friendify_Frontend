@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { createNewProfile } from '../../services/operations/profileAPI';
 
 export default function EditProfile() {
     const { dark, user } = useSelector((state) => state.profile);
+    const {token} = useSelector((state) => state.auth);
     const [formData, setFormData] = useState({
         firstname: "",
         lastname: "",
@@ -26,16 +28,19 @@ export default function EditProfile() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        console.log("FormData ", formData)
+        await createNewProfile(formData,token)
 
     };
 
     return (
-        <div className={`bg-${dark ? "dark" : "light"} text-${dark ? "white" : "black"} h-screen  md:p-7 md:mt-10 md:ml-5`}>
-            <div className={`post ${dark ? "dark-card" : "light-card"} rounded-lg mb-4 md:p-4 `}>
+        <div className={`bg-${dark ? "dark" : "light"} text-${dark ? "white" : "black"} h-screen p-4  md:p-7 md:mt-10 md:ml-5`}>
+            <div className={`post ${dark ? "dark-card" : "light-card"} flex flex-col justify-center items-start gap-4 rounded-lg mb-4 p-4 md:p-4 `}>
                 <p className='text-xl font-semibold'>Edit Profile</p>
-                <form className='flex flex-col gap-4 justify-center items-start' onSubmit={handleSubmit}>
+                <form className='flex  flex-col gap-4 md:justify-center justify-center items-start' onSubmit={handleSubmit}>
 
                     <div className='flex flex-col justify-center items-center border border-gray-300 rounded-lg p-4'>
                         <label htmlFor='file' className='cursor-pointer'>
@@ -51,7 +56,7 @@ export default function EditProfile() {
                         <input className='hidden' id='file' type='file' name='profileimage' onChange={handleChange} />
                     </div>
 
-                    <div className='flex gap-5' >
+                    <div className='flex md:flex-row flex-col gap-5' >
                         <label className='flex flex-col'>
                             <span>First Name</span>
                             <input  type='text' name='firstname' value={formData.firstname} onChange={handleChange} placeholder='Enter First Name' className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[300px] rounded-full `} />

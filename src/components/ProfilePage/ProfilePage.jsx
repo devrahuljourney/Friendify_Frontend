@@ -84,8 +84,8 @@ export default function ProfilePage({ userId }) {
 
                     <div className='w-full flex flex-row justify-evenly items-start'>
                         <div>
-                            <div className='flex flex-col relative md:w-[150px] md:h-[150px] w-[120px] h-[120px]'>
-                                <img className='border-4 border-gray-400 md:w-[150px] md:h-[150px] w-[120px] h-[120px] rounded-full object-cover absolute md:right-[80%] bottom-[50%] md:bottom-[50%]' src={profileData?.additionalDetails?.image} alt='profileimage' />
+                            <div className='flex  z-10 flex-col relative md:w-[150px] md:h-[150px] w-[120px] h-[120px]'>
+                                <img className='  border-4 border-gray-400 md:w-[150px] md:h-[150px] w-[120px] h-[120px] rounded-full object-cover absolute  md:right-[80%] bottom-[50%] md:bottom-[50%]' src={profileData?.additionalDetails?.image} alt='profileimage' />
                             </div>
                             <div className='relative w-full'>
                                 <p className='w-full font-bold text-[22px] md:-translate-x-20 -translate-y-10 md:-translate-y-16'>{profileData?.firstname} {profileData?.lastname}</p>

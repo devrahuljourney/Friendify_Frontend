@@ -45,9 +45,9 @@ export default function UploadPost({fetchFeedData}) {
                     </label>
                 </div>
 
-                <div className='flex justify-evenly items-center' >
+                <div className='flex flex-col  md:flex-row md:justify-evenly  justify-center items-center' >
                     <label htmlFor='file'>
-                        <input className='bg-transparent' id='file' onChange={changeHandler} name='file' type='file' />
+                        <input className='bg-transparent  z-10 ml-10  ' id='file' onChange={changeHandler} name='file' type='file' />
                     </label>
                     <button className={` font-semibold ${dark ? " dark-highlight  ":" light-highlight"} hover:bg-gray-200 p-3  flex justify-center items-center rounded-xl `}  type="submit">Post</button>
                 </div>

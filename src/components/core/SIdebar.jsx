@@ -35,7 +35,7 @@ export default function SIdebar() {
     const dispatch = useDispatch();
 
     return (
-        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7 z-30   `} >
+        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7 z-50   `} >
             <div className={`  ${dark ? "dark-card" : " light-card " }  rounded-xl  flex flex-col md:justify-start   md:item-start gap-5 font-bold md:w-[300px] w-[70%]   z-20  p-7  `} >
             <div className="flex justify-center items-start flex-col gap-5   gap-x-2">
                 {sidebarLinks.map((link) => (
