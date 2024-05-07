@@ -2,11 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.loginform {
-    border-radius: 19px;
-background: linear-gradient(145deg, #c5c2cc, #eae7f3);
-box-shadow:  35px 35px 70px #bab8c1,
-             -35px -35px 70px #fcf8ff;
+.loginform-light {
+    border-radius: 38px;
+background: #E5F0FE;
+box-shadow:  27px 27px 54px #c3ccd8,
+             -27px -27px 54px #ffffff;
+}
+
+.loginform-dark {
+    border-radius: 38px;
+background: #1A1A1A;
+box-shadow:  17px 17px 34px #0a0a0a,
+             -17px -17px 34px #2a2a2a;
 }
 
 .dark {

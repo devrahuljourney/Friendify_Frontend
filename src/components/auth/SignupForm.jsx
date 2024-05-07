@@ -37,14 +37,16 @@ export default function SignupForm() {
     dispatch(sendOtp(formData.email, navigate));
   };
 
+  const {dark} = useSelector((state) => state.profile)
+
   return (
     <div className="flex flex-col justify-center items-center h-screen">
        <h2 className="text-3xl font-semibold mb-4">Sign Up</h2>
-      <form className="loginform rounded p-8 shadow-md md:w-[350px] w-[300px] h-[400px] flex flex-col justify-center " onSubmit={handleSubmit}>
+      <form className= {` ${dark ? "loginform-dark" :"loginform-light"} rounded p-8 shadow-md md:w-[350px] w-[300px] h-[400px] flex flex-col justify-center`} onSubmit={handleSubmit}>
         
         <div className="mb-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[300px] rounded-full `}
             type="text"
             placeholder="First Name"
             name="firstname"
@@ -55,7 +57,7 @@ export default function SignupForm() {
         </div>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[300px] rounded-full `}
             type="text"
             placeholder="Last Name"
             name="lastname"
@@ -66,7 +68,7 @@ export default function SignupForm() {
         </div>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[300px] rounded-full `}
             type="email"
             placeholder="Email Address"
             name="email"
@@ -77,7 +79,7 @@ export default function SignupForm() {
         </div>
         <div className="mb-4">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[300px] rounded-full `}
             type="password"
             placeholder="Password"
             name="password"
@@ -88,7 +90,7 @@ export default function SignupForm() {
         </div>
         <div className="mb-6">
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[300px] rounded-full `}
             type="password"
             placeholder="Confirm Password"
             name="confirmPassword"
@@ -97,7 +99,7 @@ export default function SignupForm() {
             required
           />
         </div>
-        <button type="submit" className="w-full bg-[#5c5470] font-bold text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"> { loading ? "Signing..." : "Sign in" } </button>
+        <button type="submit" className= {`w-full ${dark ? "dark-highlight" : " light-highlight"} font-bold text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300`}> { loading ? "Signing..." : "Sign in" } </button>
       </form>
 
       <div className="mt-4 text-center">

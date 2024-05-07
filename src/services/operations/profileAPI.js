@@ -83,7 +83,7 @@ export const createNewProfile = async (profileData, token) => {
     const toastId = toast.loading("Creating profile...");
     try {
         const response = await apiconnector("POST", CREATE_PROFILE, profileData, {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             "Authorization": `Bearer ${token}`
         });
 

@@ -88,7 +88,7 @@ export default function EditProfile() {
 
                     <label className='flex flex-col'>
                         <span>Date of Birth</span>
-                        <input type='text' name='dob' value={formData.dob} onChange={handleChange} placeholder='Enter Your DOB' className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[500px] rounded-full `} />
+                        <input type='date' name='dob' value={formData.dob} onChange={handleChange} placeholder='Enter Your DOB' className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[200px] md:w-[500px] rounded-full `} />
                     </label>
                     <label className='flex flex-col'>
                         <span>About</span>
