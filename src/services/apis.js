@@ -42,3 +42,7 @@ export const postEndpoints = {
     CREATE_LIKE: (postId) => `${BASE_URL}/like/createlike/${postId}`,
     DELETE_LIKE: (likeId) => `${BASE_URL}/like/deletelike/${likeId}`,
   };
+
+  export const searchEndpoints = {
+    SEARCH : (keyword) => `${BASE_URL}/search/search?keyword=${keyword}`
+  }
