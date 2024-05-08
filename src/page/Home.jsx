@@ -23,7 +23,7 @@ export default function Home() {
         <Sidebar/>
         <BelowMenu/>
       </div>
-      <div  className={` ${dark ? "dark" : "light" }  sc overflow-auto  `}>
+      <div  className={` ${dark ? "dark" : "light" } md:w-[80%] w-full  sc overflow-auto  `}>
         <div className=" h-screen  ">
           <Outlet />
         </div>
