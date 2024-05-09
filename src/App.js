@@ -12,16 +12,17 @@ import Explore from './page/Explore';
 import Notifications from './page/Notifications'; 
 import Post from './page/Post';
 import EditProfile from './components/ProfilePage/EditProfile';
+import PrivateRoute from './components/auth/PrivateRoute';
 
 function App() {
   const { loggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!loggedIn) {
-      navigate("/login");
-    }
-  }, [loggedIn, navigate]); 
+  // useEffect(() => {
+  //   if (!loggedIn) {
+  //     navigate("/login");
+  //   }
+  // }, [loggedIn, navigate]); 
 
   const {dark} = useSelector((state) => state.profile)
 
@@ -29,7 +30,7 @@ function App() {
     <div className= {`App  overflow-x-hidden ${dark ? "dark" :"light"}`}>
     
       <Routes>
-        <Route  element={<Home />}>
+        <Route  element={<PrivateRoute><Home /></PrivateRoute>}>
           {/* Nested routes for Home page */}
           <Route path= "/" element = {<Post/>} />
           <Route path='/notifications' element={<Notifications />} />
