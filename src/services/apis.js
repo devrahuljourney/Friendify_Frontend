@@ -1,7 +1,16 @@
+// socket.js
+import { io } from "socket.io-client";
+
+
 
 
 const BASE_URL = "https://friendify-backend.vercel.app/api/v1"
 //const BASE_URL = "http://localhost:4000/api/v1"
+
+
+const socket = io(BASE_URL);
+
+export default socket;
 
 export const endPoints = {
     
