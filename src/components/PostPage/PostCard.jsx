@@ -27,7 +27,7 @@ export default function PostCard({ post , fetchFeedData }) {
     const [comments, setComments] = useState(post.comments || []);
 
     const socket = io("https://friendify-backend.vercel.app/api/v1",{
-        transports: ['websocket'],
+        transports: ["polling", "websocket"]
        })
 
     useEffect(() => {
