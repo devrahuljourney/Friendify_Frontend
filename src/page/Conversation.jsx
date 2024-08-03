@@ -9,7 +9,7 @@ export default function Conversation() {
     const { token } = useSelector((state) => state.auth);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const { senderId, receiverId } = useParams();
+    const { senderId, receiverId , name} = useParams();
 
     const fetchMessage = async () => {
         setLoading(true);
@@ -21,31 +21,40 @@ export default function Conversation() {
 
     useEffect(() => {
         fetchMessage();
-    }, [senderId, receiverId,]);
+    }, [senderId, receiverId, token]);
 
     return (
         <div className='md:p-12 p-2 md:ml-6 rounded-full md:mt-5 w-[100%] gap-2 flex flex-col justify-center items-center'>
-            <div className={`post w-full ${dark ? "dark-card" : "light-card"} h-screen rounded-lg mb-4 p-4`}>
+            <div className={`post flex flex-col gap-3 w-full ${dark ? "dark-card" : "light-card"} h-screen rounded-lg mb-4 p-4`}>
                 <div className={`flex justify-between ${dark ? "dark" : "light"} p-2 rounded-lg`}>
                     <div className='flex justify-start'>
                         <Link to="/chat">
-                            <IoArrowBackCircleSharp style={{ width: "30", height: "30" }} />
+                            <IoArrowBackCircleSharp style={{ width: "30px", height: "30px" }} />
                         </Link>
                     </div>
-                    <div className='font-bold'>Conversation</div>
+                    <div className='font-bold'>{name }</div>
                 </div>
-                <div>
+                <div className={`overflow-y-auto h-full  ${dark ? "dark" : "light"} p-3 rounded-lg`}>
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
                         data ? (
-                            // Render the messages here, e.g.:
                             data.map((message, index) => (
-                                <div key={index}>ss</div>
+                                <div 
+                                    key={index} 
+                                    className={`flex ${message?.senderId === user?._id ? "justify-end" : "justify-start"} mb-2`}
+                                >
+                                    <div 
+                                        className={`p-2 rounded-lg ${message.senderId === user._id ? "bg-gray-600 text-white" : "bg-gray-300 text-black"}`}
+                                    >
+                                        {message.message}
+                                    </div>
+                                </div>
                             ))
                         ) : (
                             <p>No messages found.</p>
                         )
+                        
                     )}
                 </div>
             </div>

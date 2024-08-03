@@ -43,7 +43,7 @@ function Chat() {
                     {data?.map((conversation) => (
                         <Link 
                             key={conversation._id} 
-                            to={`/chat/senderId/${user._id}/receiverId/${conversation.members[1]._id}`}
+                            to={`/chat/senderId/${user._id}/receiverId/${conversation.members[1]._id}/${conversation.members[1].firstname}}`}
                         >
                             <UserSortProfile data={conversation.members[1]} />
                         </Link>

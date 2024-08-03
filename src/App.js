@@ -39,7 +39,7 @@ function App() {
           <Route path='/profile/:userId' element={<Profile />} />
           <Route path='/edit/:userId' element= {<EditProfile/>} />
           <Route path='/search' element={<Explore />} />
-          <Route path='/chat/senderId/:senderId/receiverId/:receiverId' element={<Conversation />} />
+          <Route path='/chat/senderId/:senderId/receiverId/:receiverId/:name' element={<Conversation />} />
 
         </Route>
         <Route path='/login' element={<Login />} />
