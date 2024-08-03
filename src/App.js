@@ -13,6 +13,8 @@ import Notifications from './page/Notifications';
 import Post from './page/Post';
 import EditProfile from './components/ProfilePage/EditProfile';
 import PrivateRoute from './components/auth/PrivateRoute';
+import Chat from './page/Chat';
+import Conversation from './page/Conversation';
 
 function App() {
   const { loggedIn } = useSelector((state) => state.auth);
@@ -33,10 +35,12 @@ function App() {
         <Route  element={<PrivateRoute><Home /></PrivateRoute>}>
           {/* Nested routes for Home page */}
           <Route path= "/" element = {<Post/>} />
-          <Route path='/notifications' element={<Notifications />} />
+          <Route path='/chat' element={<Chat />} />
           <Route path='/profile/:userId' element={<Profile />} />
           <Route path='/edit/:userId' element= {<EditProfile/>} />
           <Route path='/search' element={<Explore />} />
+          <Route path='/chat/senderId/:senderId/receiverId/:receiverId' element={<Conversation />} />
+
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />

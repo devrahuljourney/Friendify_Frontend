@@ -5,10 +5,15 @@ import { io } from "socket.io-client";
 
 
 const BASE_URL = "https://friendify-backend.vercel.app/api/v1"
-//const BASE_URL = "http://localhost:4000/api/v1"
+const socketUrl = "https://friendify-backend.vercel.app"
+// const BASE_URL = "http://localhost:4000/api/v1"
+// const socketUrl = "http://localhost:4000";
 
 
-const socket = io(BASE_URL);
+
+const socket = io(socketUrl,{
+  transports: ["polling", "websocket"]
+ });
 
 export default socket;
 
@@ -28,7 +33,8 @@ export const profileEndpoints = {
     DELETE_PROFILE : BASE_URL + "/profile/deleteprofile",
     FOLLOW_USER: (userId) => `${BASE_URL}/profile/follow/${userId}`,
     UNFOLLOW_USER : (userId) =>  `${BASE_URL}/profile/unfollow/${userId}`,
-    GET_PROFILE_BY_ID : (userId) => `${BASE_URL}/profile/getprofilebyid/${userId}`
+    GET_PROFILE_BY_ID : (userId) => `${BASE_URL}/profile/getprofilebyid/${userId}`,
+    FOLLOW_SUGGESTIONS : BASE_URL + "/profile/followsuggestion"
 }
 
 
@@ -54,4 +60,10 @@ export const postEndpoints = {
 
   export const searchEndpoints = {
     SEARCH : (keyword) => `${BASE_URL}/search/search?keyword=${keyword}`
+  }
+
+  export const conversionEndpoints = {
+    SEND_MESSAGE : `${BASE_URL}/message/send-message`,
+    GET_MESSAGE :(senderId,receiverId) => `${BASE_URL}/message/get-message/${senderId}/${receiverId}`,
+    GET_MESSAGED_USER :(senderId) => `${BASE_URL}/message/get-messaged-user/${senderId}`
   }

@@ -13,6 +13,7 @@ import renderIcon from '../../utils/icon';
 import { MdOutlineDeleteSweep } from "react-icons/md";
 import { deletePostAPI } from '../../services/operations/postAPI';
 import { io } from 'socket.io-client';
+import socket from '../../services/apis';
 
 
 export default function PostCard({ post , fetchFeedData }) {
@@ -26,12 +27,18 @@ export default function PostCard({ post , fetchFeedData }) {
     const [commentShow, setCommentShow] = useState(false); 
     const [comments, setComments] = useState(post.comments || []);
 
-    const socket = io("https://friendify-backend.vercel.app/api/v1",{
-        transports: ["polling", "websocket"]
-       })
+    // const socket = io("http://localhost:4000"
+    // // ,{
+    // //     transports: ["polling", "websocket"]
+    // //    }
+    // )
 
     useEffect(() => {
         socket.on("updatePost", (data) => {
+            
+            fetchFeedData();
+        });
+        socket.on("newComment", (data) => {
             
             fetchFeedData();
         });
@@ -67,7 +74,7 @@ export default function PostCard({ post , fetchFeedData }) {
             } else {
                 
                 await createLike(post._id, token);
-                socket.emit("likePost", { postId: post._id, userId: user?._id, action: "like" });
+                socket.emit("likePost", { postId: post._id, userId: user?._id, action: "comment" });
                 
             }
             fetchFeedData()
@@ -85,6 +92,7 @@ export default function PostCard({ post , fetchFeedData }) {
                 console.log("Comment created successfully");
                 setCommentData("");
                 setComments([...comments, newComment]); 
+                socket.emit("newComment", { postId: post._id, action: "comment" });
                 console.log("comment ", comments)
             }
         } catch (error) {

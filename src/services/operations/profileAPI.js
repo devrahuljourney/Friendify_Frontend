@@ -3,7 +3,7 @@ import { apiconnector } from "../apiconnector";
 import { profileEndpoints } from "../apis";
 import { setProfileData } from "../../slices/profileSlice";
 
-const { GETPROFILE, GET_PROFILE_BY_ID, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER } = profileEndpoints;
+const { GETPROFILE, GET_PROFILE_BY_ID, CREATE_PROFILE, DELETE_PROFILE, FOLLOW_USER, UNFOLLOW_USER, FOLLOW_SUGGESTIONS } = profileEndpoints;
 
 // Function to fetch user profile
 export const fetchProfile = async (token) => {
@@ -75,6 +75,40 @@ export const fetchProfileById = async (userId, token) => {
         return null;
     }
 };
+
+export const followSuggestions = async (token) => {
+    try {
+        const response = await fetch(FOLLOW_SUGGESTIONS, {
+            method:"GET",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        console.log("GET  FOLLOW SUGGESTIONS API RESPONSE ", response);
+
+        // Check if response is successful
+        if (!response.ok) {
+            throw new Error("Failed to fetch follow suggestion");
+        }
+
+        // Parse response body as JSON
+        const responseData = await response.json();
+        console.log("Response data from FETCH FOLLOW SUGGESTIONS API ", responseData);
+
+        toast.success("Follow suggestions retrieved successfully");
+        
+        const result = responseData.suggestions;
+        console.log("result ", result);
+
+        return result;
+    } catch (error) {
+        console.log("GET FOLLOW SUGGESTIONS API ERROR:", error);
+        // toast.error(error.response.data.message);
+        toast.error(error.message);
+        return null;
+    }
+}
 
 
 // Function to create user profile

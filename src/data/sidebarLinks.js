@@ -14,8 +14,8 @@ export const sidebarLinks = [
     },
     {
         id: 3,
-        name: "Notifications" ,
-        path: "/notifications" ,
+        name: "Chat" ,
+        path: "/chat" ,
         icon: "VscBell"
     },
     {
