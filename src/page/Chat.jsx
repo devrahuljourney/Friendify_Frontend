@@ -37,21 +37,26 @@ function Chat() {
             </div>
             
             {loading ? (
-                <Spinner />
-            ) : data ? (
-                <div>
-                    {data?.map((conversation) => (
-                        <Link 
-                            key={conversation._id} 
-                            to={`/chat/senderId/${user._id}/receiverId/${conversation.members[1]._id}/${conversation.members[1].firstname}}`}
-                        >
-                            <UserSortProfile data={conversation.members[1]} />
-                        </Link>
-                    ))}
-                </div>
-            ) : (
-                <p className='font-bold ' >You haven't messaged anyone</p>
-            )}
+    <Spinner />
+) : data ? (
+    <div>
+        {data?.map((conversation) => {
+            return conversation.members.map((member) => (
+                user?._id !== member._id && (
+                    <Link 
+                        key={conversation._id} 
+                        to={`/chat/senderId/${user._id}/receiverId/${member._id}/${member.firstname}`}
+                    >
+                        <UserSortProfile data={member} />
+                    </Link>
+                )
+            ))
+        })}
+    </div>
+) : (
+    <p className="font-bold">You haven't messaged anyone</p>
+)}
+
         </div>
         </div>
     );

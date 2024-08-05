@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { apiconnector } from "../apiconnector";
 import { conversionEndpoints } from "../apis";
-const { GET_MESSAGED_USER, GET_MESSAGE } = conversionEndpoints
+const { GET_MESSAGED_USER, GET_MESSAGE, SEND_MESSAGE } = conversionEndpoints
 
 
 
@@ -45,3 +45,21 @@ export const getMessage = async (senderId, receiverId, token) => {
         return null;
     }
 };
+
+export const sendMessage = async(senderId, receiverId, message, token) => {
+    try {
+        const response = await apiconnector("POST", SEND_MESSAGE , {senderId, receiverId,message}, {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }  )
+
+        console.log("SEND MESSAGE API RESPONSE ", response);
+        if (!response?.data?.success) {
+            throw new Error("Could not send messages");
+        }
+    } catch (error) {
+        console.log("SEND MESSAGE API ERROR:", error);
+        toast.error(error.response.data.message);
+        toast.error(error.message);
+    }
+}

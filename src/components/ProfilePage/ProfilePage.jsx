@@ -11,6 +11,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import PostCard from '../PostPage/PostCard';
 import { setProfileData } from '../../slices/profileSlice';
+
+import { BsChatDots } from "react-icons/bs";
 export default function ProfilePage({ userId }) {
     // const [profileData, setProfileData] = useState(null); 
     const [loading, setLoading] = useState(true); // Add loading state
@@ -91,7 +93,7 @@ export default function ProfilePage({ userId }) {
                                 <p className='w-full font-bold text-[22px] md:-translate-x-20 -translate-y-10 md:-translate-y-16'>{profileData?.firstname} {profileData?.lastname}</p>
                             </div>
                         </div>
-                        <div className='translate-y-4 md:translate-x-9'>
+                        <div className=' flex flex-row justify-center items-center gap-4 translate-y-4 md:translate-x-9'>
                             {user._id === userId ? (
                                 <Link className={`${dark ? "border-white hover:bg-[#FFFD00] hover:text-black" : "border-black hover:text-black hover:bg-[#c9ddf7]"} border-2 rounded-full font-bold py-1 px-4`} to={`/edit/${user._id}`}>Edit Profile</Link>
                             ) : (
@@ -101,6 +103,10 @@ export default function ProfilePage({ userId }) {
 
                                 
                             )}
+
+                            {
+                                user._id !== userId && <Link className={`${dark ? "border-white hover:bg-[#FFFD00] hover:text-black" : "border-black hover:text-black hover:bg-[#c9ddf7]"} border-2 rounded-full font-bold py-1 px-4`} to={`/chat/senderId/${user?._id}/receiverId/${userId}/${profileData?.firstname}`} > <BsChatDots/> </Link>
+                            }
                         </div>
                     </div>
                 </div>

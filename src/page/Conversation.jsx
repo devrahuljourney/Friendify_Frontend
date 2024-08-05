@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { Link, useParams } from 'react-router-dom';
-import { getMessage } from '../services/operations/conversationAPI';
+import { getMessage, sendMessage } from '../services/operations/conversationAPI';
 
 export default function Conversation() {
     const { user, dark } = useSelector((state) => state.profile);
@@ -10,6 +10,7 @@ export default function Conversation() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const { senderId, receiverId , name} = useParams();
+    const [message, setMessage] = useState("");
 
     const fetchMessage = async () => {
         setLoading(true);
@@ -19,9 +20,25 @@ export default function Conversation() {
         console.log("DATA FROM CONVERSATION", result);
     }
 
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        if (message.trim() !== "") {
+            await sendMessage(senderId, receiverId, message, token);
+            setMessage(""); // Clear the input after sending the message
+            fetchMessage(); // Fetch updated messages
+        }
+    }
+
     useEffect(() => {
         fetchMessage();
     }, [senderId, receiverId, token]);
+
+    useEffect(() => {
+        const messagesContainer = document.querySelector('.messages-container');
+        if (messagesContainer) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+    }, [data]);
 
     return (
         <div className='md:p-12 p-2 md:ml-6 rounded-full md:mt-5 w-[100%] gap-2 flex flex-col justify-center items-center'>
@@ -32,9 +49,9 @@ export default function Conversation() {
                             <IoArrowBackCircleSharp style={{ width: "30px", height: "30px" }} />
                         </Link>
                     </div>
-                    <div className='font-bold'>{name }</div>
+                    <Link to={`/profile/${receiverId}`} className='font-bold'>{name }</Link>
                 </div>
-                <div className={`overflow-y-auto h-full  ${dark ? "dark" : "light"} p-3 rounded-lg`}>
+                <div className={`overflow-y-auto h-full ${dark ? "dark" : "light"} p-3 rounded-lg messages-container`}>
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
@@ -54,10 +71,19 @@ export default function Conversation() {
                         ) : (
                             <p>No messages found.</p>
                         )
-                        
                     )}
                 </div>
+                <form onSubmit={submitHandler} className='flex w-full justify-between gap-2'>
+                    <textarea 
+                        type='text' 
+                        onChange={(e) => setMessage(e.target.value)} 
+                        value={message} 
+                        name='message' 
+                        className= {` ${dark ? "dark border-[#FFFD00] focus:ring-[#FFFD00] ":"light focus:ring-[#c9ddf7] border-[#c9ddf7]"} outline-none focus:ring-2 border-b-2   px-4 py-2 w-[90%] md:w-[90%] rounded-lg `}
+                    />
+                    <button type='submit' className={` font-semibold ${dark ? " dark-highlight  ":" light-highlight"} hover:bg-gray-200 p-3 w-[10%] flex justify-center items-center rounded-xl `}>Send</button>
+                </form>
             </div>
         </div>
-    )
+    );
 }
