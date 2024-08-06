@@ -4,10 +4,10 @@ import { io } from "socket.io-client";
 
 
 
-//const BASE_URL = "https://friendify-backend.vercel.app/api/v1"
-//const socketUrl = "https://friendify-backend.vercel.app"
-const BASE_URL = "http://localhost:4000/api/v1"
-const socketUrl = "http://localhost:4000";
+const BASE_URL = "https://friendify-backend.vercel.app/api/v1"
+const socketUrl = "https://friendify-backend.vercel.app"
+// const BASE_URL = "http://localhost:4000/api/v1"
+// const socketUrl = "http://localhost:4000";
 
 
 
