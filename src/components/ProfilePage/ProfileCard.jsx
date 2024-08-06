@@ -29,8 +29,8 @@ export default function ProfileCard() {
     const {user} = useSelector((state => state.profile))
 
     return (
-        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7 mt-9  `}>
-            <div className={`  ${dark ? "dark-card" : " light-card " }   rounded-xl  flex flex-col md:justify-center   md:item-center gap-5 font-bold md:w-[320px] w-[70%]   z-20    `}>
+        <div className={` ${dark ? "dark" : " bg-[#E5F0FE] " } p-7 mt-9 md:w-[100%]  `}>
+            <div className={`  ${dark ? "dark-card" : " light-card " }   rounded-xl  flex flex-col md:justify-center   md:item-center gap-5 font-bold md:w-[100%] w-[70%]   z-20    `}>
             <div className='' >
                 <img src={coverImg} alt='coverimg' />
             </div>

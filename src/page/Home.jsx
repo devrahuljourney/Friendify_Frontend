@@ -19,17 +19,17 @@ export default function Home() {
           menu ? ( <GrClose/> ) : ( <GiHamburgerMenu/>)
          }
       </div>
-      <div className={ ` md:flex md:flex-col md:relative absolute md:w-[300px] w-full top-10 h-full transition-all transition-200 ${menu ? " right-0" : " md:right-0 right-[-500px] "}  ` } >
+      <div className={ ` md:flex md:flex-col md:relative absolute md:w-[25%] w-full top-10 h-full transition-all transition-200 ${menu ? " right-0" : " md:right-0 right-[-700px] "}  ` } >
         <Sidebar/>
         <BelowMenu/>
       </div>
-      <div  className={` ${dark ? "dark" : "light" } md:w-[80%] w-full  sc overflow-auto  `}>
+      <div  className={` ${dark ? "dark" : "light" } md:w-[50%] w-full  sc overflow-auto  `}>
         <div className=" h-screen  ">
           <Outlet />
         </div>
       </div>
 
-      <div className='md:inline-block hidden' ><SideView/></div>
+      <div className='lg:inline-block hidden lg:w-[25%]' ><SideView/></div>
     </div>
   )
 }

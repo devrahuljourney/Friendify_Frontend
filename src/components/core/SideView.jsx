@@ -7,8 +7,8 @@ export default function SideView() {
 
     const {dark} = useSelector((state) => state.profile)
   return (
-    <div className={` ${dark ? "dark" : "bg-[#E5F0FE] "} h-screen w-[400px] `} >
-      <div>
+    <div className={` ${dark ? "dark" : "bg-[#E5F0FE] "} h-screen w-[100%] `} >
+      <div className='md:w-[100%]'>
         <ProfileCard/>
         <FollowerSuggestion/>
       </div>

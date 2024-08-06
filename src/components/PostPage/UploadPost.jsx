@@ -45,7 +45,7 @@ export default function UploadPost({fetchFeedData}) {
                     </label>
                 </div>
 
-                <div className='flex flex-col  md:flex-row md:justify-evenly  justify-center items-center' >
+                <div className='flex flex-col  lg:flex-row md:justify-evenly  justify-center items-center' >
                     <label htmlFor='file'>
                         <input className='bg-transparent  z-10 ml-10  ' id='file' onChange={changeHandler} name='file' type='file' />
                     </label>
